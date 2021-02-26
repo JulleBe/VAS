@@ -1,0 +1,193 @@
+@import '../../style/variables';
+
+#home_about {
+    display: grid;
+    place-items: center;
+}
+.aboutContainer {
+    max-width: 480px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+    grid-template-rows: 110px 10px 211px auto auto;
+    grid-gap: 20px;
+    .sectionTitleContainer {
+        grid-row: 1;
+        grid-column-start: 1;
+        grid-column-end: -1;
+        place-self: flex-end;
+    } 
+}
+
+    .aboutTitleText {
+        font-family: Degular, Arial, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 70px;
+        text-align: left;
+        color: $charcoal;
+        line-height: 50px;
+        grid-column-start: 1;
+        grid-column-end: -1;
+        grid-row: 1;
+        place-self: flex-start;
+    }
+  
+#home_about{
+    .sectionTitle {
+        padding-top: 0px;
+        text-align: right;
+        h1 {
+            font-size: 70px ;
+        }
+        .sectionTitleOutline {
+            right: 0px ;
+            transform: translate(0);
+            left: auto;
+        }
+    }
+}
+
+
+.introImageContainer {
+    grid-row: 3;
+    overflow: hidden;
+    position: relative;
+    img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+.introTextContainer{
+    grid-row: 3;
+    align-self: center;
+    p {
+        max-width: 158px;
+        font-size: 14px;
+        line-height: 125%;
+    } 
+    
+}
+
+.aboutDescription {
+    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    p {
+        font-size: 14px;
+        line-height: 120%;
+    }
+
+    a {
+        font-family: Degular, Arial, sans-serif;
+        margin-bottom: 20px;
+        color: $orange;
+        font-weight: 500;
+    }
+}
+
+.aboutCTA {
+    grid-row: 5;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    .aboutCTA_title{
+        margin-bottom: 20px;
+    }
+    .aboutCTA_btnsContainer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+}
+@media only screen and (min-width: $computer) {
+    .introTextContainer {
+        p {
+            max-width: none;
+        }
+    }
+}
+
+@media only screen and(min-width: 1250px) {
+    #home_about {
+        .sectionTitle {
+            h1 {
+                font-size: 152px !important;
+            }
+        }
+    }
+    .aboutContainer {
+        max-width: 1150px;
+        grid-template-columns: 428.5px 70px 135px 365px 135px;
+        grid-template-rows: 152px 152px 240px auto;
+        grid-gap: 0px;
+    }
+    .aboutTitleText {
+        grid-column-start: 1;
+        grid-column-end: -1;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        font-size: 152px;
+        align-self: center;
+        line-height: normal;
+    }
+    .introImageContainer {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: -1;
+        height: 640px;
+    }
+    .introTextContainer {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        align-self: flex-start;
+    }
+    .aboutDescription{
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        height: 134px;
+        align-self: center;
+        margin-top: 70px;
+    }
+    .aboutCTA {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        align-self: end;
+        .aboutCTA_title{
+            text-align: start;
+            font-size: 36px !important;
+            margin-bottom: 20px;
+        }
+    }
+    .aboutContainer {
+
+        .sectionTitleContainer{
+            grid-column-start: 3;
+            grid-column-end: 6;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            place-self: flex-start;
+            .sectionTitle {
+                
+                line-height: 70px;
+                h1{
+                    font-size: 152px !important;
+                }
+                span{
+                    bottom: -25px;
+                }
+            }
+            
+        }
+    }
+}

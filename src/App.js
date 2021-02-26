@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { loadReCaptcha } from 'react-recaptcha-google';
+
+import Home from './home/home.js';
+import Navigation from './components/navigation/navigation.js';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Portfolio from './portfolio/portfolio';
+import Footer from './components/footer/footer';
+import PrivacyStatement from './misc/privacy_statement/privacyStatement.js'
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Gallery from './portfolio/gallery/gallery';
 
 function App() {
+  AOS.init();
+  useEffect(()=> {
+    loadReCaptcha();
+  })
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navigation />
+        <Switch>
+          <Route path="/portfolio" exact component={Portfolio} />
+          <Route path="/portfolio/:category" exact component={Gallery} />
+          <Route path="/privacy-statement" exact component={PrivacyStatement} />
+          <Route path="/" exact component={Home} />
+        </Switch>
+        <Footer />
+      </div>
+      
+    </Router>
   );
 }
 

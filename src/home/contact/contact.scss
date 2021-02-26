@@ -1,0 +1,112 @@
+@import '../../style/variables';
+
+#home_contact {
+    .contactContent {
+        width: 90%;
+        margin: auto;
+        margin-top: 80px;
+        max-width: 456.5px;
+        margin-bottom: 100px;
+        .contactForm {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 120%;
+        }
+    }
+}
+
+.formGroup {
+    width: 100%;
+    position: relative;
+    font-size: 14px;
+    input {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid $charcoal;
+        padding: 5px 2px;
+        outline: none;
+    }
+    label {
+        font-family: Degular, Arial, sans-serif;
+        font-weight: 500;
+        position: absolute;
+        bottom: 10px;
+        left: 2px;
+        opacity: 0.3;
+        transition: 0.2s ease;
+    }
+    textarea {
+        width: calc(100% - 10px);
+        resize: none;
+        font-family: Degular, Arial, sans-serif;
+        padding: 5px;
+        border: 2px solid $charcoal;
+        height: 100px;
+        outline: none;
+    }
+}
+
+.inputField:focus
+{
+    outline: none;
+    
+    & + .labelName {
+        transform: translateY(-140%);
+        opacity: 1;
+    }
+}
+.inputField:hover + .labelName{
+    color: $charcoal !important;
+    opacity: 1;
+}
+.inputField:invalid {
+    border-bottom: 2px solid red;
+    outline: none !important;
+    box-shadow: none;
+    & + .labelName {
+        transform: translateY(-140%);
+    }
+}
+.inputField:valid{ 
+    &+ .labelName {
+        transform: translateY(-140%);
+        color: $charcoal;
+    }
+}
+
+textarea {
+    &:invalid {
+        box-shadow: none;
+    }
+}
+
+.formErrorMessage {
+    position: absolute;
+    right: 0px;
+    top: -10px;
+    p {
+        font-size: 12px !important;
+        font-family: Degular, Arial, sans-serif !important;
+    }
+}
+.form_successMessage {
+    font-family: Degular, Arial, sans-serif;
+    font-size: 16px;
+    color: $charcoal;
+}
+@media only screen and(min-width: $computer) {
+    .formGroup {
+        input,
+        label ,
+        textarea{
+            font-size: 16px;
+        }
+    }
+   
+}

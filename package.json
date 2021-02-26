@@ -6,10 +6,20 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
+    "emailjs-com": "^2.6.4",
+    "formik": "^2.2.6",
+    "node-sass": "^5.0.0",
     "react": "^17.0.1",
+    "react-animated-css": "^1.2.1",
     "react-dom": "^17.0.1",
+    "react-recaptcha-google": "^1.1.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "react-scroll": "^1.8.1",
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",

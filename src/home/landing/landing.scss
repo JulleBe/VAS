@@ -1,0 +1,86 @@
+@import '../../style/variables';
+
+#home_landing {
+    position: relative;
+    padding-bottom: 0px;
+}
+
+.backgroundVideo {
+    position: relative; 
+    right: 0;
+    bottom: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    
+    video {
+        object-fit: cover;
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.landingContent {
+    background-color: rgba($charcoal, 0.5);
+    position: absolute;
+    width: 100vw;
+    height: 100Vh;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .landing_centerLogo {
+        width: 234px;
+        @media only screen and(min-width: $computer) {
+            width: 531px;
+        }
+    }
+}
+
+.nextSectionBtn {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    a {
+        transition: 0.2s ease;
+        font-family: Degular, Arial, sans-serif;
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        
+    }
+    p {
+        transition: 0.2s ease;
+        font-size: 14px;
+        border-bottom: none;
+        &:hover {
+            border-bottom: none;
+        }
+    }
+    .nextSectionBtnWrapper {
+        svg{
+            transition: 0.2s ease;
+        }
+    }
+    &:hover {
+        .nextSectionBtnWrapper {
+            svg {
+                transform: translateY(5px)
+            }
+        }
+    }
+    @media only screen and (min-width: $computer) {
+        a {
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+}

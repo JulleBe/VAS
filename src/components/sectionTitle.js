@@ -1,0 +1,25 @@
+import React from 'react';
+
+function Title(props) {
+    return (
+        <div className="sectionTitleContainer">
+            <div className="sectionTitle">
+                <h1 
+                className="sectionTitleMain" 
+                data-aos="zoom-out-down"  
+                data-aos-once="true"
+                data-aos-duration="400">{props.text}</h1>
+                <h1 
+                className="sectionTitleOutline" 
+                data-aos="fade-down"  
+                data-aos-once="true" 
+                data-aos-delay="300"
+                data-aos-offset="200"
+                data-aos-duration="400">{props.text}</h1>
+            </div>
+           
+        </div>
+    )
+}
+
+export default Title;

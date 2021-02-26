@@ -1,0 +1,149 @@
+
+@import '../variables';
+
+nav {
+    border-bottom: 3px solid $orange;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+#nav_persistent {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 100vw;
+    margin: auto;
+    height: 60px;
+    
+    #nav_logo{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+       .nav_logoContainer{
+           height: 41px;
+           width: 205px;
+           margin-left: 15px;
+           .nav_logoWrapper {
+               width: 100%;
+               height: 100%;
+               background-image: url(../../assets/logo/VAS_WORDMARK_BLACK.svg);
+               background-size: contain;
+               background-repeat: no-repeat;
+           }
+       }
+    }
+    #nav_menuBtn {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        div{
+            margin-right: 15px;
+            svg {
+                cursor: pointer;
+                path {
+                    stroke: $charcoal !important;
+                }
+            }
+        }
+    }
+}
+
+
+#nav_links {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    background-color: white;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+    .nav_pagesWrapper {
+        width: 70%;
+        height: 365px;
+    }
+    #nav_pages {
+        li {
+            font-size: 28px;
+            font-family: Degular, Arial, sans-serif;
+            text-align: left;
+        }
+    }
+}
+
+
+.nav_linksList {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 50px;
+    a {
+        text-decoration: none;
+        width: 100%;
+    }
+    li {
+        color: $charcoal;  
+        position: relative;
+        display: inline;
+        &::after {
+            position: absolute;
+            content: '';
+            bottom: -5px;
+            left: 0px;
+            display: block;
+            width: 15px;
+            height: 2px;
+            background-color: $charcoal;
+            transition: 0.2s ease;
+        }
+        &:hover {
+            &:after {
+                width: 100%;
+                background-color: $orange;
+            }
+        }
+    }
+}
+#nav_social {
+    margin-top: 100px;
+    display: flex;
+    ul {
+        display: flex;
+        align-items: baseline;
+        gap: 30px;
+    }
+    svg {
+        path {
+            transition: 0.2s ease;
+        }
+       
+        &:hover {
+           path {
+               fill: $orange;
+           } 
+        }
+    }
+}
+
+#nav_closeBtn {
+    display: flex;
+    margin-top: 100px;
+    svg {
+        path {
+            opacity: 0.35;
+            transition: 0.2s ease;
+        }
+        cursor: pointer;
+        &:hover {
+            path {
+                opacity: 1;
+            }
+        }
+    }
+    .closeBtn_last {
+        float: right;
+    }
+}

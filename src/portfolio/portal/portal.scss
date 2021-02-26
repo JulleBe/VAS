@@ -1,0 +1,175 @@
+
+@import '../../style/variables';
+
+.portfolioPortal {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: auto !important;
+    transition: 0.4s ease;
+    .portal_Link{
+        height: 100%;
+        place-items: center;
+        justify-content: center;
+        background-position: center;
+        object-fit: cover;
+        background-size: cover;
+        text-decoration: none;
+        position: relative;
+        transition: 0.3s ease;
+        &:hover {
+            
+            .portal_Title {
+                border-bottom: 0px solid transparent ;
+                .portal_TitleOutline {
+                    transform: translateY(10px);
+                    opacity: 1;
+                }
+            }
+            &::after {
+                
+                background-color: rgba($color: $charcoal, $alpha: 0.6);
+                
+            }
+        }
+        &::after {
+            content:'';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: rgba($color: $charcoal, $alpha: 0.2);
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: 0.2s ease;
+        }
+    }
+    
+}
+
+#photoSelector {
+    background-image: url(../../assets/images/photo.jpg);
+}
+
+#videoSelector {
+    background-image: url(../../assets/images/video.jpg);
+}
+
+.portal_Title {
+    color: white;
+    font-family: Degular, Arial, sans-serif !important;
+    font-size: 80px !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 0px solid transparent ;
+    z-index: 99;
+    transition: 0.3s ease;
+    position: relative;
+    .portal_TitleOutline {
+        transition: 0.3s ease ;
+        opacity: 0;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        -moz-text-fill-color: rgba($color: white, $alpha: 0);
+        -webkit-text-fill-color: rgba($color: white, $alpha: 0);
+        -moz-text-stroke-color: white;
+        -webkit-text-stroke-color: white;
+        -moz-text-stroke-width: 2px;  
+        -webkit-text-stroke-width: 2px;
+    }
+}
+
+.photoHover{
+    grid-template-rows: 60% 40% ;
+    #videoSelector {
+        .portal_Title {
+           font-size: 60px !important;
+        }
+        &:after {
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
+        }
+    }
+   
+}
+.videoHover {
+    grid-template-rows: 40% 60% ;
+    #photoSelector {
+        .portal_Title {
+           font-size: 60px !important ;
+        }
+        &:after {
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
+        }
+    }
+}
+
+@media only screen and (min-width: $computer) {
+    .portfolioPortal {
+        grid-template-columns: 50% 50% !important;
+        grid-template-rows: auto;
+    }
+    .portal_Link {
+        
+        &:hover{
+            .portal_Title {
+                .portal_TitleOutline {
+                    transform: translateY(20px) !important;
+                }
+            }
+        }
+    }
+    .portal_Title {
+        font-size: 120px !important;
+        .portal_TitleOutline {
+            -moz-text-stroke-width: 3px;  
+            -webkit-text-stroke-width: 3px;
+        }
+        
+    }
+    .photoHover{
+        grid-template-columns: 60% 40% !important;
+        grid-template-rows: auto;
+        #videoSelector {
+            .portal_Title {
+               font-size: 100px ;
+            }
+        }
+       
+    }
+    .videoHover {
+        grid-template-columns: 40% 60% !important;
+        grid-template-rows: auto;
+        #photoSelector {
+            .portal_Title {
+               font-size: 100px ;
+            }
+        }
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+    .portal_Title {
+        font-size: 152px !important;
+    }
+    .photoHover{
+        
+        #videoSelector {
+            .portal_Title {
+               font-size: 100px !important;
+            }
+        }
+       
+    }
+    .videoHover {
+       
+        #photoSelector {
+            .portal_Title {
+               font-size: 100px  !important;
+            }
+        }
+    }
+}
