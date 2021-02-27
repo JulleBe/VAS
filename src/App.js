@@ -1,3 +1,4 @@
+
 import './App.scss';
 import { loadReCaptcha } from 'react-recaptcha-google';
 
@@ -12,6 +13,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Gallery from './portfolio/gallery/gallery';
 
+
 function App() {
   AOS.init();
   useEffect(()=> {
@@ -23,7 +25,7 @@ function App() {
       <div className="App">
         <Navigation />
         <Switch>
-          <Route path="/portfolio" exact component={Portfolio} />
+          <Route path="/portfolio" exact component={Portfolio}/>
           <Route path="/portfolio/:category" exact component={Gallery} />
           <Route path="/privacy-statement" exact component={PrivacyStatement} />
           <Route path="/" exact component={Home} />

@@ -1,11 +1,12 @@
 
-import React from 'react';
-import Gallery from './gallery/gallery';
+import React, { useEffect } from 'react';
 import PortfolioPortal from './portal/portal';
 
 
 function Portfolio() {
-
+      useEffect(()=> {
+        document.title = "VAS Pictures - Portfolio"
+      })
       return (
         <div className="Portfolio">
           <PortfolioPortal />

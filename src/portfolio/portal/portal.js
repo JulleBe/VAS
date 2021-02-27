@@ -1,10 +1,10 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Link as Router} from 'react-router-dom'; 
 import './portal.scss';
 
 function PortfolioPortal() {
-
+    
     function changeGridSize(e){
         let portal = document.getElementById('portfolioPortalContainer')
         if(e.target.id === "photoSelector"){
