@@ -1,39 +1,42 @@
 
 import './App.scss';
-import { loadReCaptcha } from 'react-recaptcha-google';
-
 import Home from './home/home.js';
 import Navigation from './components/navigation/navigation.js';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Switch, Route, useLocation} from 'react-router-dom';
 import Portfolio from './portfolio/portfolio';
 import Footer from './components/footer/footer';
 import PrivacyStatement from './misc/privacy_statement/privacyStatement.js'
-import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Gallery from './portfolio/gallery/gallery';
+import PortfolioGallery from './portfolio/gallery/gallery';
+import {AnimatePresence} from 'framer-motion'
+import Lightbox from './portfolio/lightbox/lightbox';
+
 
 
 function App() {
+
   AOS.init();
-  useEffect(()=> {
-    loadReCaptcha();
-  })
-  
+
+  const location = useLocation();
+
   return (
-    <Router>
-      <div className="App">
-        <Navigation />
-        <Switch>
-          <Route path="/portfolio" exact component={Portfolio}/>
-          <Route path="/portfolio/:category" exact component={Gallery} />
-          <Route path="/privacy-statement" exact component={PrivacyStatement} />
-          <Route path="/" exact component={Home} />
-        </Switch>
-        <Footer />
-      </div>
-      
-    </Router>
+  
+        <div className="App">
+          <Navigation />
+          <AnimatePresence 
+            exitBeforeEnter>
+            <Switch location={location} key={location.pathname}>
+              <Route path="/portfolio" exact component={Portfolio}/>
+              <Route path="/portfolio/:type" exact component={PortfolioGallery} />
+              <Route path="/portfolio/:type/:projectId?" exact component={Lightbox} />
+              <Route path="/privacy-statement" exact component={PrivacyStatement} />
+              <Route path="/" exact component={Home} />
+            </Switch>
+          </AnimatePresence>
+          <Footer />
+        </div>
+        
   );
 }
 

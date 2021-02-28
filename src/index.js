@@ -4,9 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {BrowserRouter as Router} from 'react-router-dom';
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client'
+import ScrollToTop from './components/scrollToTop.js';
+
+const URI = "http://localhost:1337";
+
+const client = new ApolloClient({
+    uri: URI  + "/graphql",
+    cache: new InMemoryCache()
+});
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <ApolloProvider
+        client={client}>
+        <Router>
+          <ScrollToTop />
+          <App />
+        </Router>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import {Link as Router} from 'react-router-dom'; 
 import './portal.scss';
 

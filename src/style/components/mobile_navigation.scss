@@ -83,6 +83,14 @@ nav {
     a {
         text-decoration: none;
         width: 100%;
+        &:hover,
+        &:focus 
+         {
+            li:after {
+                width: 100%;
+                background-color: $orange;
+            }
+        }
     }
     li {
         color: $charcoal;  
@@ -98,13 +106,8 @@ nav {
             height: 2px;
             background-color: $charcoal;
             transition: 0.2s ease;
-        }
-        &:hover {
-            &:after {
-                width: 100%;
-                background-color: $orange;
-            }
-        }
+        }       
+      
     }
 }
 #nav_social {
@@ -119,8 +122,10 @@ nav {
         path {
             transition: 0.2s ease;
         }
-       
-        &:hover {
+    }
+    a {
+        &:hover,
+        &:focus {
            path {
                fill: $orange;
            } 
@@ -137,7 +142,8 @@ nav {
             transition: 0.2s ease;
         }
         cursor: pointer;
-        &:hover {
+        &:hover,
+        &:focus {
             path {
                 opacity: 1;
             }

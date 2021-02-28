@@ -1,5 +1,8 @@
 @import '../../style/variables';
 
-.galleryContainer {
+#galleryContainer {
     min-height: 100vh;
+    padding-top: 60px;
+    background-color: $charcoal;
 }
+

@@ -64,7 +64,7 @@ function About() {
                 </div>
 
                 <div className="aboutCTA" 
-                data-aos="zoom-in"
+                data-aos="zoom-out"
                 data-aos-delay="600"
                 data-aos-once="true">
                     <h3 className="aboutCTA_title">See my work</h3>
