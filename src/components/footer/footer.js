@@ -50,8 +50,12 @@ function Footer () {
                     </ul>
                 </div>
                 <div className="footer_miscContainer">
-                    <Link to="/privacy-statement"><p>Privacy statement</p></Link>
                     <p>&copy; 2020 VAS-Pictures - All rights reserved</p>
+                    <div>
+                        <Link to="/privacy-statement"><p>Privacy statement</p></Link>
+                        <p className="footer_credits">Website by <a href='http://www.julle.be/' target="_blank" rel="noreferrer">Julle</a></p>
+                    </div>
+                   
                 </div>
                 <div className="footer_sitemapContainer">
                     <ul className="footer_sitemapLinks">
@@ -60,6 +64,7 @@ function Footer () {
                         <li><Link to="/#contact">contact</Link></li>
                     </ul>
                 </div>
+            
             </div>
         </footer>
     )

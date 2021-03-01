@@ -10,7 +10,8 @@ function Button(props) {
             disabled={props.disabled} 
             data-aos="zoom-in" 
             data-aos-once="true"
-            data-aos-delay="100">
+            data-aos-delay="100"
+            className="vas_button">
             <p className="btnText">{props.text}
                 <span className="btnTextShadow ">{props.text}</span>
             </p>

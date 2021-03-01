@@ -1,5 +1,5 @@
 
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 
 import './thumbnail.scss';
 import Loader from '../../components/loader';
@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 function ProjectThumbnail(_ref) {
     const history = useHistory();
     const LazyImage = React.lazy(()=> import('../lazyImage'))
-
+    
     let index = _ref.index;
     let photo = _ref.photo;
     let id = photo.id;
@@ -26,7 +26,7 @@ function ProjectThumbnail(_ref) {
    
     function openLightbox(e){
  
-        history.push('/portfolio/'+ type +'/' + e.currentTarget.id)
+        history.push('/portfolio/'+ type +'/' + e.currentTarget.id + "?index=0")
       
     }
     

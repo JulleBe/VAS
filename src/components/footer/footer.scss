@@ -89,10 +89,7 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    a {
-        justify-content: center !important;
-        margin-bottom: 10px !important;
-    }
+    
     p {
         font-size: 12px;
         border-bottom: 2px transparent solid;
@@ -101,9 +98,28 @@ footer {
             font-weight: bold;
         }
     }
+    div{
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-between;
+        a,p {
+            justify-content: center !important;
+            text-align: center;
+        }
+        .footer_credits{
+            justify-content: center;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            a {
+                margin-bottom: 0px !important;
+            }
+        }
+    }
 }
-
-
 @media only screen and(min-width: $computer) {
     .footerContainer {
         width: 90% !important;
@@ -139,5 +155,9 @@ footer {
             font-family: Degular, Arial, sans-serif !important;
             font-size: 14px !important;
         } 
+    }
+    .footer_creditsContainer {
+        grid-column: 3;
+         grid-row: 2;
     }
 }

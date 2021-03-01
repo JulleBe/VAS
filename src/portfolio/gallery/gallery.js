@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, {useEffect, lazy, Suspense} from 'react';
 import {useParams} from 'react-router-dom';
@@ -9,12 +10,13 @@ import Lightbox from '../lightbox/lightbox';
 import {capitalizeWord} from '../../helpers/strings.js';
 
 const PORTFOLIO_QUERY = gql`
-    query Portfolio($type: String!){
-        vasPictures(where:{ProjectType: $type}){
+    query Portfolios($type: String!){
+        portfolios(where: {ProjectType: $type}){
             id
             Title
             Client
             ProjectType
+            ThumbnailAspectRatio
             Thumbnail {
                 url
             }
@@ -23,33 +25,12 @@ const PORTFOLIO_QUERY = gql`
 `;
 
 
-function mapDataToPhotos(data){
-    const emptyImg = "http://imageipsum.com/1200x675";
-    return data.map(photo => ( {
-        id: removeCaps(replaceSpaces(photo.id)),
-        key: removeCaps(replaceSpaces(photo.Title)) + photo.id,
-        title: photo.Title,
-        client: photo.Client,
-        src:  emptyImg,
-        type: photo.ProjectType,
-        width: 4,
-        height: 3,
-    }))
-}
 
-function replaceSpaces(string) {
-    return string.split(' ').join('-')
-}
-
-function removeCaps(string) {
-    return string.toLowerCase()
-}
-
-function PortfolioGallery() {
+function  PortfolioGallery() {
 
     const Gallery = lazy(() => import('react-photo-gallery'))
     const {type, projectId} = useParams();
-    let photos = [];
+    let photos = []
     // Loads in the images from the graphql query when the component is loaded 
     const {loading, error, data} = useQuery(PORTFOLIO_QUERY, {
         variables: {
@@ -58,16 +39,13 @@ function PortfolioGallery() {
     })
 
     useEffect(() => {
-        if(error) {
-            console.log(error)
-        }
-        document.title = "VAS Pictures - " + capitalizeWord(type);
-       
-    })
+        document.title = "VAS Pictures - " + capitalizeWord(type); 
+    }, [loading, data, error, type])
 
-    if(!loading) {
-        photos = mapDataToPhotos(data.vasPictures)
+    if(loading === false && error === undefined) {
+       
         if(projectId === undefined) {
+            photos = mapDataToPhotos(data.portfolios)
             return (
                 <div id="galleryContainer">
                     <Suspense fallback={<ImageLoader/>}>
@@ -105,4 +83,52 @@ function ImageLoader() {
             <Loader/>
         </div>
     )
+}
+
+function mapDataToPhotos(data){
+    return data.map(photo => ( {
+        id: removeCaps(replaceSpaces(photo.id)),
+        key: removeCaps(replaceSpaces(photo.Title)) + photo.id,
+        title: photo.Title,
+        client: photo.Client,
+        src:  photo.Thumbnail.url,
+        type: photo.ProjectType,
+        width: deterMineRatio(photo.ThumbnailAspectRatio, 'width'),
+        height: deterMineRatio(photo.ThumbnailAspectRatio, 'height'),
+    }))
+}
+
+function replaceSpaces(string) {
+    return string.split(' ').join('-')
+}
+
+function removeCaps(string) {
+    return string.toLowerCase()
+}
+function deterMineRatio(ratio, axis){
+    switch (ratio) {
+        case 'portrait':
+            if(axis === 'width') {
+                return 9;
+            } else if(axis === 'height') {
+                return 16;
+            }
+            break;
+        case 'square':
+            if(axis === 'width') {
+                return 1;
+            } else if(axis === 'height') {
+                return 1;
+            }
+            break;
+        case 'landscape':
+            if(axis === 'width') {
+                return 16;
+            } else if(axis === 'height') {
+                return 9;
+            }
+            break;
+        default:
+            return 1;
+    }
 }

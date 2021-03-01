@@ -7,8 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client'
 import ScrollToTop from './components/scrollToTop.js';
+import Config from './helpers/_global';
 
-const URI = "http://localhost:1337";
+const URI = Config.SERVER_URL
 
 const client = new ApolloClient({
     uri: URI  + "/graphql",

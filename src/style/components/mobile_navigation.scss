@@ -36,7 +36,7 @@ nav {
     #nav_menuBtn {
         display: flex;
         align-items: center;
-        justify-content: right;
+        justify-content: flex-end;
         div{
             margin-right: 15px;
             svg {

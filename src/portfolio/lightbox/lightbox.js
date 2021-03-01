@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
 
 import "../lightbox/lightbox.scss";
-import SectionTitle from '../../components/sectionTitle';
 import { useHistory } from 'react-router-dom';
-import {useParams } from 'react-router-dom';
+import {useParams, useLocation } from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {gql, useQuery } from '@apollo/client';
-
-import {capitalizeWord} from '../../helpers/strings.js';
-
+import Config from '../../helpers/_global';
 const pageVariants = {
     in: {
         opacity: 1,
@@ -28,28 +25,29 @@ const pageTransition = {
     duration: 0.5
 }
 const PROJECT_QUERY = gql`
-query GetProject($projectID: String!) {
-    vasPictures(where: {id: $projectID}) {
+query GetProject($projectID: ID!) {
+    portfolio(id: $projectID) {
         id
         Title
         Client
         ProjectType
         Content {
-        ... on ComponentPhotoContentPhoto {
+        ... on ComponentContentPhoto {
             images{
             url
             }
         }
-        ... on ComponentVideoVideo {
+        ... on ComponentContentVideo {
             videoLink
+            Provider
         }
         }
     
     }
 }
 
-`
-//TODO: Responsive! + image carousel
+`;
+
 function Lightbox(props) {
 
     const {type, projectId} = useParams();
@@ -62,11 +60,9 @@ function Lightbox(props) {
     })
     
     const [projectData, setprojectData] = useState({})
+    const [projectContent, setProjectContent] = useState([])
+   
 
-   
-    let currentSlide = 1;
-    let totalSlides = 5;
-   
     function closeModal(){
         history.push('/portfolio/'+ type)
     }
@@ -74,15 +70,14 @@ function Lightbox(props) {
 
     useEffect(() => {
         if(loading === false) {
-           
-           let tmpData = data.vasPictures[0]
+           let tmpData = data.portfolio
            setprojectData(tmpData)
-           console.log(tmpData)
-           document.title = "VAS Pictures - " + projectData.Title
+           setProjectContent(tmpData.Content[0])
+           document.title = "VAS Pictures - " + projectData.Title;
         } else{
             console.log('Fetching project')
         }
-    }, [projectData, data, error, loading])
+    }, [projectData, data, error, loading, projectContent])
 
     return (
         <div  
@@ -94,13 +89,16 @@ function Lightbox(props) {
             animate="in"
             exit="out"
             transition={pageTransition}
-            variants={ pageVariants}
+            variants={pageVariants}
             >
-                <div className="modal_container">
+                <div className="modal_container"
+                    >
                     <header>
-                        <SectionTitle text={projectData.Title} ></SectionTitle>
+                            <div className="modal_titleContainer">
+                                <h4>{projectData.Title}</h4>
+                            </div>
                         <div className="modal_projectClientContainer">
-                            <h3><span>for </span>{projectData.Client}</h3>
+                            <h5><span>for </span>{projectData.Client}</h5>
                         </div>
                         <div className="modal_projectCloseBtnContainer">
                             <button onClick={closeModal}>
@@ -110,14 +108,20 @@ function Lightbox(props) {
                             </button>
                         </div>
                     </header>
-                    <section className="modal_contentWrapper">
-                        {projectData.ProjectType === 'photo' 
-                        ? <Modal_carousel />
-                        : <Modal_player />}
-                    </section>
-                    <section className="modal_imageCounter">
-                        <p className="modal_imageCounterText">{currentSlide} / {totalSlides}</p>
-                    </section>
+                    {projectContent !== undefined && !loading  ?
+                        <section className="modal_contentWrapper">
+                           {projectData.ProjectType === 'photo' 
+                           
+                            ? <ModalCarousel 
+                                images={projectContent.images} />
+                           
+                            :  <ModalPlayer 
+                                    link={projectContent.videoLink}
+                                    provider={projectContent.Provider} />
+                            }
+                        </section> : null
+                    }
+                   
                 </div>
             </motion.section>
         </div>
@@ -127,22 +131,111 @@ function Lightbox(props) {
 
 export default Lightbox;
 
-function Modal_carousel () {
+function ModalCarousel (props) {
+    const query =  useCheckQuery();
+    let currentSlide = query.get("index");
+    let totalSlides = props.images.length;
+    let history = useHistory();
+    const location = useLocation();
+
+    function goToNextSlide(current) {
+        let nextPage = parseInt(current) +1
+        history.push(location.pathname + '?index=' + nextPage)
+    }
+
+    function goToPreviousSlide(current) {
+        let nextPage = parseInt(current) - 1
+        history.push(location.pathname + '?index=' + nextPage)
+    }
+
+    return (
+        <>
+            <section className="modal_imageCarousel">
+                <div className="modal_imageContainer modal_responsiveFrame">
+                    <img src={props.images[query.get("index")].url} alt=""/>   
+                </div>
+               
+            </section>
+            <div className="modal_carouselControls">
+                    <button onClick={() => goToPreviousSlide(currentSlide)} disabled={currentSlide <= 0} className="carouselControl_buttons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30.63" height="49.603" viewBox="0 0 30.63 49.603">
+                        <g id="Icon_material-navigate-next" data-name="Icon material-navigate-next" transform="translate(30.63 49.603) rotate(180)">
+                            <path id="Icon_material-navigate-next-2" data-name="Icon material-navigate-next" d="M18.713,9l-5.828,5.828L31.817,33.8,12.885,52.775,18.713,58.6l24.8-24.8Z" transform="translate(-12.885 -9)" fill="#fff" opacity="0.7"/>
+                        </g>
+                    </svg>
+
+                    </button>
+                    <button onClick={() => goToNextSlide(currentSlide)} disabled={currentSlide >= (totalSlides-1)} className="carouselControl_buttons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30.63" height="49.603" viewBox="0 0 30.63 49.603">
+                            <g id="Icon_material-navigate-next" data-name="Icon material-navigate-next" transform="translate(30.63 49.603) rotate(180)">
+                                <path id="Icon_material-navigate-next-2" data-name="Icon material-navigate-next" d="M18.713,9l-5.828,5.828L31.817,33.8,12.885,52.775,18.713,58.6l24.8-24.8Z" transform="translate(-12.885 -9)" fill="#fff" opacity="0.7"/>
+                            </g>
+                        </svg>
+
+                    </button>  
+                </div>
+            <section className="modal_imageCounter">
+                        <p className="modal_imageCounterText">{parseInt(currentSlide) + 1 } / {totalSlides}</p>
+            </section>
+        </>
+    )
+}
+
+
+function ModalPlayer (props) {
+    const [videoLink, setVideoLink] = useState('') 
+    useEffect(() => {
+    
+        setVideoLink(props.link)
+        //
+        if(videoLink !== '') {
+            setVideoLink(editLinkToEmbedLink(props.link, props.provider))
+        }
+    },[videoLink, setVideoLink, props.link, props.provider])
+    
     return (
         <div>
-            <h1>
-                test
-            </h1>
+            <div className="modal_playerWrapper">
+                <iframe 
+                    className="modal_responsiveFrame"
+                    title="video"
+                    src={videoLink} 
+                    frameBorder="0"
+                    allowFullScreen
+
+                ></iframe>
+            </div>
         </div>
     )
 }
 
-function Modal_player () {
-    return (
-        <div>
-        <h1>
-            test 2
-        </h1>
-    </div>
-    )
+
+function editLinkToEmbedLink (link, provider) {
+    switch (provider) {
+        case 'youtube':
+            if(link.includes('watch')) {
+                let toReplaceString = "watch?v=";
+                let replaceBy = "embed/";
+    
+                return link.replace(toReplaceString, replaceBy)
+            }else { 
+                return link;
+            }
+           
+        case 'vimeo':
+            if(!link.includes('player.')) {
+                let addPlayerString = 'player.' + provider + '.com/video/';
+                let toReplaceString = provider + '.com/'
+                return link.replace(toReplaceString, addPlayerString)
+            } else {
+                return link;
+            }
+        // Other providers added here: 
+        default:
+            return link;
+    }
+}
+
+function useCheckQuery() {
+    return new URLSearchParams(useLocation().search);
 }

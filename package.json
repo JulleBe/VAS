@@ -1,5 +1,6 @@
 {
   "name": "vas",
+  "homepage": "",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +21,7 @@
     "react-helmet": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.1",
     "react-photo-gallery": "^8.0.0",
+    "react-presents": "^0.8.1",
     "react-recaptcha-google": "^1.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",

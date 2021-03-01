@@ -20,10 +20,12 @@
 }
 
 .modal_container {
-    max-width: 1000px;
+    
     width: 90%;
-    display: grid;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 96vh;
     .sectionTitle {
         text-align: left;
         .sectionTitleOutline {
@@ -36,31 +38,50 @@
     }
     header {
         display: grid;
-        grid-template-columns: auto 50px;
-        grid-template-rows: auto auto;
-        gap: 40px;
-        .sectionTitle{
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        
+        grid-column-start: 1;
+        grid-column-end: -1;
+        gap: 5px;
+        height: 120px;
+        .modal_titleContainer {
+            grid-row: 2;
+            font-size: 30px !important;
             padding-top: 0px;
+            h4 {
+                color: $charcoal;
+                font-weight: bold;
+                font-size: 50px;
+                font-family: Degular, Arial, sans-serif;
+                text-transform: uppercase;
+            }
         }
         .modal_projectClientContainer {
-            grid-row: 2;
-            h3 {
+            grid-row: 3;
+            h5 {
+                font-family: Degular, Arial, sans-serif;
                 text-align: left;
+                font-weight: bold;
+                text-transform: capitalize;
+                font-size: 18px ;
+                color: $orange;
                 span {
+                    color: $charcoal;
                     font-weight: 400;
                     text-transform: lowercase;
                 }
             }
         }
         .modal_projectCloseBtnContainer {
-            grid-column-start: 2;
-            grid-column-end: 3;
+            grid-column-start: 1;
+            grid-column-end: -1;
             grid-row-start: 1;
-            grid-row-end: 3;
+            grid-row-end: 2;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             button {
+                cursor: pointer;
                 border: none;
                 width: 50px;
                 height: 50px;
@@ -86,5 +107,136 @@
             font-size: 25px !important;
             font-weight: bold;
         }
+    }
+    .modal_contentWrapper{
+        margin-top: 10px;
+    }
+}
+
+.modal_playerWrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    .modal_responsiveFrame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.modal_imageContainer {
+    position: relative;
+    min-height: 400px;
+    width: 100%;
+    
+    img {
+        max-width: 96vw;
+        top: 0;
+        position: absolute;
+        height: 100%;
+        width: auto;
+        left: 50%;
+        object-fit:contain;
+        transform: translateX(-50%);
+    }
+}
+
+.modal_carouselControls {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    bottom: -40px;
+    transform: translateY(0%);
+    display: grid;
+    grid-template-columns: 50px auto 50px;
+    .carouselControl_buttons{
+        grid-column: 1;
+        cursor: pointer;
+        path{
+            transition: 0.2s ease;
+            fill: rgba($color: $charcoal, $alpha: 0.5);
+        }
+        &:last-child {
+            grid-column: 3;
+            svg {
+                transform: rotate(180deg);
+            }
+            
+        }
+        &:hover,
+        &:focus {
+            path{
+                fill: rgba($color: $orange, $alpha: 1);
+                }
+        }
+        &:disabled{
+            display: none;
+        }
+    }
+    
+}
+@media only screen and (min-width: $computer) {
+    .modal_imageContainer {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+        min-height: 00px;
+        .modal_responsiveFrame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    header {
+        grid-template-columns: auto 50px !important;
+        grid-template-rows: auto auto !important;
+
+    }
+    .modal_container {
+        display: grid;
+        grid-template-columns: auto 50px !important;
+        grid-template-rows: auto auto !important;
+        max-width: 1000px;
+        height: auto !important;
+    }
+    .modal_titleContainer {
+        grid-row: 1 !important;
+        h4 {
+            font-size: 70px !important;
+        }
+    }
+    .modal_projectClientContainer{
+        grid-row: 2 !important;
+        h5{
+            font-size: 28px !important;
+        }
+    }
+    .modal_projectCloseBtnContainer {
+        grid-column-start: 2 !important;
+        grid-column-end: 3 !important;
+        grid-row-start: 1 !important;
+        grid-row-end: 2 !important;
+        flex-direction: column;
+        align-items: center;
+    }
+    .modal_contentWrapper {
+        grid-column-start: 1;
+        grid-column-end: -1;
+    }
+    .modal_carouselControls {
+        width: 90%;
+        bottom: 50%;
     }
 }
