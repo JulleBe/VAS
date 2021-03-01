@@ -10,13 +10,23 @@ function Footer () {
     const mailString = "mailto:" + EMAIL;
     return (
         <footer>
-            <div className="footerContainer">
+            <div 
+            className="footerContainer"
+           >
                 <div className="footer_logoContainer">
-                    <img src={footerLogo} alt="VAS - Pictures logo"/>
+                    <img 
+                    src={footerLogo} 
+                    alt="VAS - Pictures logo"  
+                    data-aos="fade-down" />
                 </div>
-                <div className="footer_socialsContainer">
+                <div 
+                    className="footer_socialsContainer"
+                   >
                     <ul className="footer_socialsList">
-                        <li>
+                        <li 
+                            data-aos="fade-right"
+                            data-aos-delay="200"
+                            data-aos-once="true">
                             <a href={mailString} target="_blank" rel="noreferrer">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16.866" height="11.385" viewBox="0 0 16.866 11.385">
@@ -26,7 +36,10 @@ function Footer () {
                                 {EMAIL}
                             </a>
                         </li>
-                        <li>
+                        <li 
+                            data-aos="fade-right"
+                            data-aos-delay="300"
+                            data-aos-once="true">
                             <a href="https://www.instagram.com/shotbyvas/" target="_blank" rel="noreferrer">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19.514" height="19.51" viewBox="0 0 19.514 19.51">
@@ -37,7 +50,10 @@ function Footer () {
                                 shotbyvas
                             </a>
                         </li>
-                        <li>
+                        <li
+                          data-aos="fade-right"
+                          data-aos-delay="400"
+                          data-aos-once="true">
                             <a href="https://www.facebook.com/VAS-Pictures-170834483559029/" target="_blank" rel="noreferrer">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="8.85" height="16.524" viewBox="0 0 8.85 16.524">
@@ -49,9 +65,13 @@ function Footer () {
                         </li>
                     </ul>
                 </div>
-                <div className="footer_miscContainer">
+                <div className="footer_miscContainer"
+                    data-aos="fade-right"
+                    data-aos-delay="600"
+                    data-aos-once="true"
+                    data-aos-anchor-placement="top top">
                     <p>&copy; 2020 VAS-Pictures - All rights reserved</p>
-                    <div>
+                    <div className="footer_miscLinks">
                         <Link to="/privacy-statement"><p>Privacy statement</p></Link>
                         <p className="footer_credits">Website by <a href='http://www.julle.be/' target="_blank" rel="noreferrer">Julle</a></p>
                     </div>
@@ -59,9 +79,18 @@ function Footer () {
                 </div>
                 <div className="footer_sitemapContainer">
                     <ul className="footer_sitemapLinks">
-                        <li><Link to="/">home</Link></li>
-                        <li><Link to="/portfolio">portfolio</Link></li>
-                        <li><Link to="/#contact">contact</Link></li>
+                        <li   
+                            data-aos="fade-right"
+                            data-aos-delay="300"
+                            data-aos-once="true"><Link to="/">home</Link></li>
+                        <li 
+                          data-aos="fade-right"
+                          data-aos-delay="400"
+                          data-aos-once="true"><Link to="/portfolio">portfolio</Link></li>
+                        <li
+                          data-aos="fade-right"
+                          data-aos-delay="500"
+                          data-aos-once="true"><Link to="/#contact">contact</Link></li>
                     </ul>
                 </div>
             

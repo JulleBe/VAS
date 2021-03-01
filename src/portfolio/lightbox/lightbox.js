@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import {useParams, useLocation } from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {gql, useQuery } from '@apollo/client';
-import Config from '../../helpers/_global';
+
 const pageVariants = {
     in: {
         opacity: 1,

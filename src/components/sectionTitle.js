@@ -12,8 +12,8 @@ function Title(props) {
                 <h1 
                 className="sectionTitleOutline" 
                 data-aos="fade-down"  
-                data-aos-once="true" 
-                data-aos-delay="300"
+                data-aos-once="false" 
+                data-aos-delay="100"
                 data-aos-offset="200"
                 data-aos-duration="400">{props.text}</h1>
             </div>
