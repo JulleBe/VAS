@@ -13,9 +13,8 @@ import {AnimatePresence} from 'framer-motion'
 import Lightbox from './portfolio/lightbox/lightbox';
 
 
-
 function App() {
-
+  
   AOS.init();
 
   const location = useLocation();

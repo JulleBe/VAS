@@ -17,10 +17,7 @@ function Contact (){
           <p className="contact_text">
           Let’s work together! Fill in the form underneath and tell me all about your project, event or dream!  
           </p>
-
-          <div className="contact_formContainer">
               <ContactForm />
-          </div>
       </div>
     </section>
   );

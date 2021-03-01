@@ -1,5 +1,8 @@
 @import './variables';
 
+html{
+  overflow-x: hidden;
+}
 body {
   max-width: 100vw;
   width: 100%;
@@ -38,6 +41,7 @@ body {
   }
 }
 .sectionTitleOutline {
+  
   color: transparent !important;
   -moz-text-fill-color: rgba($color: white, $alpha: 0);
   -webkit-text-fill-color: rgba($color: white, $alpha: 0);

@@ -8,16 +8,18 @@
         max-width: 456.5px;
         margin-bottom: 100px;
         .contactForm {
-            margin-top: 80px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
         }
         p {
             font-size: 14px;
             line-height: 120%;
         }
+    }
+    .vas_button {
+        margin-bottom: 25px;
     }
 }
 
@@ -25,6 +27,7 @@
     width: 100%;
     position: relative;
     font-size: 14px;
+    margin:  20px 00px;
     input {
         width: 100%;
         border: none;
@@ -42,7 +45,7 @@
         transition: 0.2s ease;
     }
     textarea {
-        width: calc(100% - 10px);
+        width: calc(100% - 14px);
         resize: none;
         font-family: Degular, Arial, sans-serif;
         padding: 5px;
@@ -50,6 +53,9 @@
         height: 100px;
         outline: none;
     }
+}
+.form_captchaContainer {
+    margin: 0px 0px 20px;
 }
 
 .inputField:focus
@@ -99,6 +105,10 @@ textarea {
     font-family: Degular, Arial, sans-serif;
     font-size: 16px;
     color: $charcoal;
+    margin: 10px 0px;
+    height: 50px;
+    display: grid;
+    place-items: center;
 }
 @media only screen and(min-width: $computer) {
     .formGroup {

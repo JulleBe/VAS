@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/buttons';
 
 import './contact.scss';
 import emailjs from 'emailjs-com';
-import { ReCaptcha } from 'react-recaptcha-google';
-import { loadReCaptcha } from 'react-recaptcha-google';
 import { Field, Form, Formik, useField}  from 'formik';
 import * as Yup from 'yup';
+import Reaptcha from "reaptcha";
 
 const CustomTextInput = ({label, ...props}) => {
     const [field, meta] = useField(props);
@@ -47,14 +46,12 @@ function ContactForm () {
 
     const googleSiteKey = "6LdlnGcaAAAAANf5Ep-V1NepbRSfBjhwIhNYCvRk";
 
-    let isHuman = false;
+    const [verified, setVerified] = useState(false);
+    const [captcha, setCaptcha] = useState(undefined);
 
     function onloadCallback () {
-        console.log('Loaded')
+        console.log('Captcha loaded')
     }
-
-    
-
     // Regex source: https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s02.html
 
     const phoneRegex = RegExp(
@@ -69,14 +66,8 @@ function ContactForm () {
         reCaptcha: Yup.string().required()
     })
 
-    useEffect(()=> {
-        loadReCaptcha()
-    }, [])
-
     return (
         <div>
-
-       
         <Formik 
             initialValues={{
                 fullName:'', 
@@ -93,27 +84,26 @@ function ContactForm () {
                 emailjs.send(emailJSservice,emailJStemplate,values)
                 .then(function(response) {
                     submitCount += 1;
-                    //console.log('Message sent!', response)
                     resetForm()
                     setSubmitting(false)
+                    captcha.reset()
                 }, function(error) {
                     console.log(error)
                 })
                 
             }}>
-                
+               
             {(props) => {
-                console.log(window.grecaptcha.ready)
                 function verifyCaptcha(res) {
-                    console.log(res)
-                    if(res !== undefined) {
-                        props.values.reCaptcha = res
-                        isHuman = true
-                        //console.log("Hey! you're human!", props.values.reCaptcha)
-                    }
+                  
+                    setVerified(true)
+                    props.setFieldValue("reCaptcha", res)
                 }
                 return(
-                <div>
+                <div className="form_formContainer">
+                     
+                        <SuccessMessage displayMessage={props.isSubmitting}/>
+            
                 <Form className="contactForm" onSubmit={props.handleSubmit}>
                     <CustomTextInput 
                         label="enter your name" 
@@ -134,24 +124,23 @@ function ContactForm () {
                     <CustomTextArea 
                         name="message"
                         aosdelay="500"/>
-                    {!window.grecaptcha.ready ?<ReCaptcha 
-                        sitekey={googleSiteKey}
-                        onLoad={onloadCallback}
-                        onSuccess={verifyCaptcha}
-                    /> : null}
-                    <Button type="submit" text="Submit" disabled={!(props.isValid && isHuman)}></Button>
-                    {props.isSubmitting === true ? (
-                         <div className="form_successMessage">
-                         <p>Message sent!</p>
-                     </div>
-                    ): null}
+                    <Field name="reCaptcha" type="hidden"/>
+                    <div className="form_captchaContainer">
+                        <Reaptcha
+                            onLoad={onloadCallback}
+                            sitekey={googleSiteKey}
+                            onVerify={verifyCaptcha}
+                            onError={()=> console.log('error')}
+                            ref={e => (setCaptcha(e))}
+                            />
+                    </div>
+                    <Button type="submit" text="Submit" disabled={!(props.isValid && verified)}></Button>   
                 </Form>
-                
              </div>
             )}}
         </Formik>
         </div>
-        
+    
     )
 
 
@@ -159,3 +148,16 @@ function ContactForm () {
 
 export default ContactForm;
 /* */
+
+function SuccessMessage(props){
+    return ( 
+    <div className="form_successMessage">
+        {props.displayMessage === true &&
+         <p   
+         data-aos="zoom-in"
+         data-aos-once={true}>Message sent!</p>
+        }
+       
+    </div>
+    )
+}

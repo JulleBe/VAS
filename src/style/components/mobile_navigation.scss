@@ -57,16 +57,18 @@ nav {
     top: 0;
     right: -100%;
     background-color: white;
-    display: flex;
+    display: -webkit-flex;
     place-items: center;
     justify-content: center;
     transition: 0.3s ease;
+   
     .nav_pagesWrapper {
         width: 70%;
         height: 365px;
     }
     #nav_pages {
         li {
+            margin: 25px;
             font-size: 28px;
             font-family: Degular, Arial, sans-serif;
             text-align: left;
@@ -79,7 +81,6 @@ nav {
     display: flex;
     flex-direction: column;
     text-align: left;
-    gap: 50px;
     a {
         text-decoration: none;
         width: 100%;
@@ -116,9 +117,12 @@ nav {
     ul {
         display: flex;
         align-items: baseline;
-        gap: 30px;
+        li{
+            
+        }
     }
     svg {
+        margin: 10px;
         path {
             transition: 0.2s ease;
         }

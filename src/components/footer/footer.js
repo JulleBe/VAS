@@ -39,7 +39,8 @@ function Footer () {
                         <li 
                             data-aos="fade-right"
                             data-aos-delay="300"
-                            data-aos-once="true">
+                            data-aos-once="true"
+                            data-aos-anchor-placement="top top">
                             <a href="https://www.instagram.com/shotbyvas/" target="_blank" rel="noreferrer">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19.514" height="19.51" viewBox="0 0 19.514 19.51">
@@ -53,7 +54,8 @@ function Footer () {
                         <li
                           data-aos="fade-right"
                           data-aos-delay="400"
-                          data-aos-once="true">
+                          data-aos-once="true"
+                          data-aos-anchor-placement="top top">
                             <a href="https://www.facebook.com/VAS-Pictures-170834483559029/" target="_blank" rel="noreferrer">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="8.85" height="16.524" viewBox="0 0 8.85 16.524">
@@ -82,15 +84,18 @@ function Footer () {
                         <li   
                             data-aos="fade-right"
                             data-aos-delay="300"
-                            data-aos-once="true"><Link to="/">home</Link></li>
+                            data-aos-once="true"
+                            data-aos-anchor-placement="top top"><Link to="/">home</Link></li>
                         <li 
                           data-aos="fade-right"
                           data-aos-delay="400"
-                          data-aos-once="true"><Link to="/portfolio">portfolio</Link></li>
+                          data-aos-once="true"
+                          data-aos-anchor-placement="top top"><Link to="/portfolio">portfolio</Link></li>
                         <li
                           data-aos="fade-right"
                           data-aos-delay="500"
-                          data-aos-once="true"><Link to="/#contact">contact</Link></li>
+                          data-aos-once="true"
+                          data-aos-anchor-placement="top top"><Link to="/#contact">contact</Link></li>
                     </ul>
                 </div>
             

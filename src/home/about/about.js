@@ -19,14 +19,16 @@ function About() {
       <section id="home_about" className="home_section">  
         <div className="sectionContainer">
             <div className="aboutContainer">
+                <div
+                className="aboutTitleText" >
                     <h1 
-                        className="aboutTitleText" 
+                        
                         data-aos="fade-right"
                         data-aos-delay="300"
                         data-aos-once="true">
                         Meet the
                     </h1>
-
+                    </div>
                    <Title text="Creative" className="creativeText"></Title>
 
              
