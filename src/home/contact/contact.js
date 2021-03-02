@@ -11,7 +11,7 @@ function Contact (){
   
   return(
     
-    <section id="home_contact" className="home_section">  
+    <section id="contact" className="home_section">  
       <Title text="Contact"></Title>
       <div className="contactContent">
           <p className="contact_text">

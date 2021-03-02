@@ -1,34 +1,99 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import {React, useEffect, useState} from 'react';
+import {Link, useLocation} from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import '../../style/components/mobile_navigation.scss';
 import '../../style/components/navigation.scss';
 
 function Navigation (){
+    const [yPos, setYPos] = useState(0);
+    const [isTop, setIsTop] = useState(true);
+    const page = useLocation().pathname;
+
     function openMenu() {
         let menu = document.getElementById('nav_links')
 
         menu.style.right = '0%';
     }
+
     function closeMenu() {
-        
+
         let menu = document.getElementById('nav_links')
         if(window.innerWidth <= 850){
             menu.style.right = '-100%';
-        }
-       
+        }    
+        checkIfTop(yPos)
     }
 
-    function goToPortfolio(){
+    useEffect(()=> {
+        window.onscroll = () => {
+            if(yPos < window.scrollY) {
+                setYPos(window.scrollY)
+                changeNavStyleOnSCroll('down')
+            }else {
+                setYPos(window.scrollY)
+                changeNavStyleOnSCroll('up')
+            } 
+        }
+        checkIfTop(yPos, page)
         
-        localStorage.setItem('HAS_CHOSEN', false);
-        localStorage.setItem('GALLERY_CHOICE', null)
-        closeMenu()
+    }, [yPos, isTop, page])
+
+    function checkIfTop (yPos, page) {
+        if(page === "/" || page === "/portfolio") {
+            if(yPos <= 200) {
+                setIsTop(true)
+                makeNavTransparent(true)
+            } else {
+                setIsTop(false)
+                makeNavTransparent(false)
+            }
+        }
+        else {
+            makeNavTransparent(false)
+        }
+        
     }
+
+    function changeNavStyleOnSCroll(direction) {
+        let navContainer = document.getElementById('nav_main');
+        if(direction === 'up'){
+            navContainer.classList.add('nav_scrollingUp')
+            navContainer.classList.remove('nav_scrollingDown')
+
+        } else {
+            navContainer.classList.add('nav_scrollingDown')
+            navContainer.classList.remove('nav_scrollingUp')
+
+        }
+    }
+
+    function makeNavTransparent(top) {
+        let navContainer = document.getElementById('nav_main');
+        if(page === "/" || page === "/portfolio") {
+            if(top === true)  {
+                navContainer.classList.add('nav_transparentNav')
+                checkIfHomePage(page, yPos)
+            }else {
+                navContainer.classList.remove('nav_transparentNav')
+            }
+        }else {
+            navContainer.classList.remove('nav_transparentNav')
+        }
+    }
+    function checkIfHomePage(page, yPos){
+        const logoContainer = document.getElementById('nav_logoToHide')
+        if(page === "/" && yPos <= 50) {
+            logoContainer.style.opacity = 0
+        }else {
+            logoContainer.style.opacity = 1
+        }
+    }
+
     return (
-        <nav>
+        <nav id="nav_main" >
             <div id="nav_persistent">
                 <section id="nav_logo">
-                    <div className="nav_logoContainer">
+                    <div className="nav_logoContainer" id="nav_logoToHide">
                         <div className="nav_logoWrapper">
 
                         </div>
@@ -53,12 +118,12 @@ function Navigation (){
                             <Link to="/" onClick={closeMenu}>
                                 <li className="nav_linksStyle">home</li>
                             </Link>
-                            <Link to="/portfolio" onClick={goToPortfolio}>
+                            <Link to="/portfolio" onClick={closeMenu}>
                                 <li className="nav_linksStyle">portfolio</li>
                             </Link>
-                            <Link to="/#contact" onClick={closeMenu}>
+                            <NavHashLink smooth to="/#contact" onClick={closeMenu}>
                                 <li className="nav_linksStyle">contact</li>
-                            </Link>
+                            </NavHashLink>
                         </ul>
                     </section>
                     <section id="nav_social">
@@ -87,3 +152,4 @@ function Navigation (){
 };
 
 export default Navigation;
+

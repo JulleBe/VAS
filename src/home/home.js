@@ -4,7 +4,8 @@ import Clients from './clients/clients';
 import Contact from './contact/contact';
 import Landing from './landing/landing';
 
-function Home() {
+
+ function Home() {
   useEffect(()=> {
     document.title = "VAS Pictures - Sven Van Alboom"
   })
@@ -19,3 +20,5 @@ function Home() {
 }
 
 export default Home;
+
+

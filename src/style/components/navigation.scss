@@ -5,7 +5,7 @@
         display: -webkit-flex;
         display: flex;
         grid-template-columns: 40% 60%;
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         background-color: white;
@@ -39,7 +39,8 @@
         display: -webkit-flex;
         display: flex;
         justify-content: flex-end;
-        
+        background-color: transparent;
+        transition: 0s;
         #nav_closeBtn {
             display: none;
         }
@@ -73,6 +74,42 @@
             height: 17px;
             width: auto;
         }
+    }
+    .nav_transparentNav {
+        #nav_persistent {
+            .nav_logoWrapper {
+                background-image: url(../../assets/logo/VAS-ICON_WHITE.svg) !important;
+           
+            }
+        }
+        #nav_links {
+            background-color: transparent;
+        }
+        .nav_linksStyle {
+            color: white !important;
+            &::after {
+                background-color: white;
+            }
+        }
+        #nav_social {
+            svg {
+                path {
+                    fill: white;
+                }
+            }
+            a {
+                &:hover,
+                &:focus {
+                   path {
+                       fill: $orange;
+                   } 
+                }
+            }  
+        }
+    }
+    .nav_scrollingDown {
+        position: fixed;
+        top: -70px;
     }
 }
 

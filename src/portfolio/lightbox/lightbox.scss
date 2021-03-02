@@ -45,6 +45,7 @@
         grid-column-end: -1;
         gap: 5px;
         height: 120px;
+        margin-top: 50px;
         .modal_titleContainer {
             grid-row: 2;
             font-size: 30px !important;
@@ -102,6 +103,7 @@
         display: flex;
         justify-content: center;
         .modal_imageCounterText {
+            margin-top: 20px;
             text-align: center;
             font-family: Degular !important;
             font-size: 25px !important;
@@ -110,6 +112,7 @@
     }
     .modal_contentWrapper{
         margin-top: 10px;
+        position: relative;
     }
 }
 
@@ -149,31 +152,36 @@
 .modal_carouselControls {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     margin: auto;
-    position: relative;
+    position: absolute;
     bottom: -40px;
     transform: translateY(0%);
+    height: calc(100% - 45px);
+    margin: 0px;
     display: grid;
-    grid-template-columns: 50px auto 50px;
+    grid-template-columns: 100px auto 100px;
     .carouselControl_buttons{
-        grid-column: 1;
+        grid-column: 3;
+        
         cursor: pointer;
-        path{
+        img{
+            width: 50px;
             transition: 0.2s ease;
-            fill: rgba($color: $charcoal, $alpha: 0.5);
+            opacity: 0.5;
         }
-        &:last-child {
-            grid-column: 3;
-            svg {
+
+        &:first-child {
+            grid-column: 1;
+            img {
                 transform: rotate(180deg);
             }
             
         }
         &:hover,
         &:focus {
-            path{
-                fill: rgba($color: $orange, $alpha: 1);
+            img{
+                opacity: 0.9;
                 }
         }
         &:disabled{
@@ -236,7 +244,7 @@
         grid-column-end: -1;
     }
     .modal_carouselControls {
-        width: 90%;
-        bottom: 50%;
+        top: 0;
+        width: 100%;
     }
 }

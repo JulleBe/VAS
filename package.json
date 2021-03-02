@@ -24,6 +24,7 @@
     "react-presents": "^0.8.1",
     "react-recaptcha-google": "https://github.com/azizali/react-recaptcha-google.git",
     "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^2.4.0",
     "react-scripts": "4.0.3",
     "react-scroll": "^1.8.1",
     "reaptcha": "^1.7.2",

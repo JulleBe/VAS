@@ -3,19 +3,19 @@
 
 nav {
     border-bottom: 3px solid $orange;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 99999;
+    transition: all 0.3s ease;
+    background-color: white;
 }
 #nav_persistent {
-    background-color: white;
     display: grid;
     grid-template-columns: 70% 30%;
     width: 100vw;
     margin: auto;
     height: 60px;
-    
     #nav_logo{
         display: flex;
         justify-content: left;
@@ -24,6 +24,7 @@ nav {
            height: 41px;
            width: 205px;
            margin-left: 15px;
+           transition: 0.1s ease;
            .nav_logoWrapper {
                width: 100%;
                height: 100%;
@@ -42,7 +43,7 @@ nav {
             svg {
                 cursor: pointer;
                 path {
-                    stroke: $charcoal !important;
+                    stroke: $charcoal ;
                 }
             }
         }
@@ -56,12 +57,11 @@ nav {
     position: absolute;
     top: 0;
     right: -100%;
-    background-color: white;
     display: -webkit-flex;
     place-items: center;
     justify-content: center;
     transition: 0.3s ease;
-   
+    background-color: white;
     .nav_pagesWrapper {
         width: 70%;
         height: 365px;
@@ -156,4 +156,39 @@ nav {
     .closeBtn_last {
         float: right;
     }
+}
+
+.nav_transparentNav {
+    background-color: transparent;
+    border-bottom: none;
+    transition: all 0.3s ease;
+    #nav_persistent {
+        .nav_logoWrapper {
+            background-image: url(../../assets/logo/VAS-WORDMARK_WHITE.svg) !important;
+        }
+    }
+    
+    #nav_menuBtn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        div{
+            margin-right: 15px;
+            svg {
+                cursor: pointer;
+                path {
+                    stroke: white !important;
+                }
+            }
+        }
+    }
+}
+
+.nav_scrollingDown {
+    position: fixed;
+    top: -60px;
+}
+.nav_scrollingUp {
+    position: fixed;
+   
 }

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import {useParams, useLocation } from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {gql, useQuery } from '@apollo/client';
+import nextBtn from '../../assets/SVG/next_Btn.svg';
 
 const pageVariants = {
     in: {
@@ -132,6 +133,7 @@ function Lightbox(props) {
 export default Lightbox;
 
 function ModalCarousel (props) {
+
     const query =  useCheckQuery();
     let currentSlide = query.get("index");
     let totalSlides = props.images.length;
@@ -152,28 +154,27 @@ function ModalCarousel (props) {
         <>
             <section className="modal_imageCarousel">
                 <div className="modal_imageContainer modal_responsiveFrame">
-                    <img src={props.images[query.get("index")].url} alt=""/>   
+                    <motion.img 
+                    src={props.images[query.get("index")].url} 
+                    alt=""
+                    />   
                 </div>
-               
-            </section>
-            <div className="modal_carouselControls">
+                <div className="modal_carouselControls">
                     <button onClick={() => goToPreviousSlide(currentSlide)} disabled={currentSlide <= 0} className="carouselControl_buttons">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30.63" height="49.603" viewBox="0 0 30.63 49.603">
-                        <g id="Icon_material-navigate-next" data-name="Icon material-navigate-next" transform="translate(30.63 49.603) rotate(180)">
-                            <path id="Icon_material-navigate-next-2" data-name="Icon material-navigate-next" d="M18.713,9l-5.828,5.828L31.817,33.8,12.885,52.775,18.713,58.6l24.8-24.8Z" transform="translate(-12.885 -9)" fill="#fff" opacity="0.7"/>
-                        </g>
-                    </svg>
-
+                        <img
+                        src={nextBtn} 
+                        alt="Previous Image"
+                        ></img>
                     </button>
                     <button onClick={() => goToNextSlide(currentSlide)} disabled={currentSlide >= (totalSlides-1)} className="carouselControl_buttons">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30.63" height="49.603" viewBox="0 0 30.63 49.603">
-                            <g id="Icon_material-navigate-next" data-name="Icon material-navigate-next" transform="translate(30.63 49.603) rotate(180)">
-                                <path id="Icon_material-navigate-next-2" data-name="Icon material-navigate-next" d="M18.713,9l-5.828,5.828L31.817,33.8,12.885,52.775,18.713,58.6l24.8-24.8Z" transform="translate(-12.885 -9)" fill="#fff" opacity="0.7"/>
-                            </g>
-                        </svg>
-
+                        <img
+                            src={nextBtn}
+                            alt="Next Image"
+                        ></img>
                     </button>  
                 </div>
+            </section>
+           
             <section className="modal_imageCounter">
                         <p className="modal_imageCounterText">{parseInt(currentSlide) + 1 } / {totalSlides}</p>
             </section>

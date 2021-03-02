@@ -50,7 +50,7 @@ function ContactForm () {
     const [captcha, setCaptcha] = useState(undefined);
 
     function onloadCallback () {
-        console.log('Captcha loaded')
+       /**/
     }
     // Regex source: https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s02.html
 

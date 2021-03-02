@@ -2,7 +2,7 @@
 import './App.scss';
 import Home from './home/home.js';
 import Navigation from './components/navigation/navigation.js';
-import { Switch, Route, useLocation} from 'react-router-dom';
+import { Switch, Route, useLocation, Redirect} from 'react-router-dom';
 import Portfolio from './portfolio/portfolio';
 import Footer from './components/footer/footer';
 import PrivacyStatement from './misc/privacy_statement/privacyStatement.js'
@@ -11,13 +11,14 @@ import 'aos/dist/aos.css';
 import PortfolioGallery from './portfolio/gallery/gallery';
 import {AnimatePresence} from 'framer-motion'
 import Lightbox from './portfolio/lightbox/lightbox';
-
+import SERVER_URL from './helpers/_global';
 
 function App() {
   
   AOS.init();
 
   const location = useLocation();
+  pingApi(SERVER_URL)
 
   return (
   
@@ -31,6 +32,9 @@ function App() {
               <Route path="/portfolio/:type/:projectId?" exact component={Lightbox} />
               <Route path="/privacy-statement" exact component={PrivacyStatement} />
               <Route path="/" exact component={Home} />
+              <Route>
+                <Redirect path="*"></Redirect>
+              </Route>
             </Switch>
           </AnimatePresence>
           <Footer />
@@ -40,3 +44,13 @@ function App() {
 }
 
 export default App;
+
+
+function pingApi(url) {
+  fetch(url).then(
+    (succes) => {
+
+  }, (error) => {
+
+  })
+}

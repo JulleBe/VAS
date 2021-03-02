@@ -35,8 +35,7 @@ function PortfolioPortal() {
                 onMouseEnter={changeGridSize}
                 onMouseLeave={resetGridSize}
             >
-            <h2 className="portal_Title"
-                > 
+            <h2 className="portal_Title"> 
                 Photo 
                 <span className="portal_TitleOutline">Photo</span>
                 </h2>
@@ -46,9 +45,9 @@ function PortfolioPortal() {
                 to="/portfolio/video"
                 className="portal_Link"
                 onMouseEnter={changeGridSize}
-                onMouseLeave={resetGridSize}
-            >
+                onMouseLeave={resetGridSize} >
             <h2 className="portal_Title"
+               
                >
                     Video
                 <span className="portal_TitleOutline">Video</span></h2>

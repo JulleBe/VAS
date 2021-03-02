@@ -13,10 +13,9 @@ function Landing() {
             </video>
         </div>
         <div className="landingContent">
-            <div className="landing_centerLogo">
+            <div className="landing_centerLogo" >
              <img src={whiteLogo} alt="VAS logo in White" 
-             data-aos="zoom-in"
-             data-aos-mirror="true"/>
+                className="animate__zoomOut"/>
             </div>
             <div className="nextSectionBtn">
                 <Link to="home_about" smooth="true"> 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-
+import { NavHashLink } from 'react-router-hash-link';
 import footerLogo from '../../assets/logo/VAS-ICON_WHITE.svg';
 import './footer.scss';
 
@@ -95,7 +95,7 @@ function Footer () {
                           data-aos="fade-right"
                           data-aos-delay="500"
                           data-aos-once="true"
-                          data-aos-anchor-placement="top top"><Link to="/#contact">contact</Link></li>
+                          data-aos-anchor-placement="top top"><NavHashLink smooth to="/#contact">contact</NavHashLink></li>
                     </ul>
                 </div>
             
