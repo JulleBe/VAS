@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, {useEffect, lazy, Suspense} from 'react';
+import React, {useEffect, lazy, Suspense, useCallback} from 'react';
 import {useParams} from 'react-router-dom';
 import { gql, useQuery} from '@apollo/client'
 import './gallery.scss';
@@ -27,8 +27,8 @@ const PORTFOLIO_QUERY = gql`
 
 
 function  PortfolioGallery() {
-
-    const Gallery = lazy(() => import('react-photo-gallery'))
+    const Gallery = lazy( () => import('react-photo-gallery'))
+    
     const {type, projectId} = useParams();
     let photos = []
     // Loads in the images from the graphql query when the component is loaded 
@@ -41,22 +41,32 @@ function  PortfolioGallery() {
     useEffect(() => {
         document.title = "VAS Pictures - " + capitalizeWord(type); 
     }, [loading, data, error, type])
-
+    const renderThumbnail = useCallback(
+        ({key, index, photo}) => {
+            return (
+            <ProjectThumbnail 
+                key={key}
+                photo={photo}
+                index={index}
+            />)
+            })
     if(loading === false && error === undefined) {
        
         if(projectId === undefined) {
             photos = mapDataToPhotos(data.portfolios)
             return (
                 <div id="galleryContainer">
-                    <Suspense fallback={<ImageLoader/>}>
+                    <Suspense fallback={<Loader/>}>
                         <Gallery 
-                            margin={0}
-                            photos={photos}
-                            renderImage={ProjectThumbnail}
-                            direction="row"
-                            >
+                                margin={0}
+                                photos={photos}
+                                renderImage={renderThumbnail}
+                                direction="row"
+                                >
                         </Gallery>
                     </Suspense>
+                        
+                    
                 </div>
             );
         } else if(projectId !== undefined) {
@@ -88,7 +98,7 @@ function ImageLoader() {
 function mapDataToPhotos(data){
     return data.map(photo => ( {
         id: removeCaps(replaceSpaces(photo.id)),
-        key: removeCaps(replaceSpaces(photo.Title)) + photo.id,
+        key: photo.id,
         title: photo.Title,
         client: photo.Client,
         src:  photo.Thumbnail.url,

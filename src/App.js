@@ -13,6 +13,20 @@ import {AnimatePresence} from 'framer-motion'
 import Lightbox from './portfolio/lightbox/lightbox';
 import SERVER_URL from './helpers/_global';
 
+
+const pageTransition = {
+  
+}
+
+const pageVariants = {
+  in: {
+    opacity: 1
+  }, 
+  out: {
+    opacity: 0
+  }
+}
+
 function App() {
   
   AOS.init();
@@ -27,13 +41,17 @@ function App() {
           <AnimatePresence 
             exitBeforeEnter>
             <Switch location={location} key={location.pathname}>
-              <Route path="/portfolio" exact component={Portfolio}/>
+              <Route path="/portfolio" exact component={Portfolio} />
               <Route path="/portfolio/:type" exact component={PortfolioGallery} />
               <Route path="/portfolio/:type/:projectId?" exact component={Lightbox} />
               <Route path="/privacy-statement" exact component={PrivacyStatement} />
-              <Route path="/" exact component={Home} />
+              <Route path="/" exact component={() => <Home
+                            transition={pageTransition}
+                            variants={pageVariants}/>} 
+    
+              />
               <Route>
-                <Redirect path="*"></Redirect>
+                <Redirect path="*" to="/"></Redirect>
               </Route>
             </Switch>
           </AnimatePresence>

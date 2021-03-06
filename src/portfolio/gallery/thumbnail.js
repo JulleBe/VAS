@@ -5,12 +5,12 @@ import './thumbnail.scss';
 import Loader from '../../components/loader';
 import { useHistory } from 'react-router-dom';
 
-function ProjectThumbnail(_ref) {
+function ProjectThumbnail(props) {
     const history = useHistory();
     const LazyImage = React.lazy(()=> import('../lazyImage'))
     
-    let index = _ref.index;
-    let photo = _ref.photo;
+    let index = props.index;
+    let photo = props.photo;
     let id = photo.id;
     let title = photo.title;
     let client = photo.client;
@@ -26,7 +26,7 @@ function ProjectThumbnail(_ref) {
    
     function openLightbox(e){
  
-        history.push('/portfolio/'+ type +'/' + e.currentTarget.id + "?index=0")
+        history.push('/portfolio/'+ type +'/' + e.currentTarget.id)
       
     }
     

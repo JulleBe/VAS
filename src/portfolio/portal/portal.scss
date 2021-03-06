@@ -3,13 +3,12 @@
 
 .portfolioPortal {
     height: 100vh;
-    display: grid;
-    grid-template-rows: 50% 50%;
-    grid-template-columns: auto !important;
+    display: flex;
+    flex-direction: column;
     transition: 0.3s ease;
     -webkit-transition: all 0.3s ease;
     .portal_Link{
-        height: 100%;
+        height: 50vh;
         place-items: center;
         justify-content: center;
         background-position: center;
@@ -19,8 +18,8 @@
         position: relative;
         transition: 0.3s ease;
         -webkit-transition: all 0.4s ease;
+        width: 100vw;
         &:hover {
-            
             .portal_Title {
                 border-bottom: 0px solid transparent ;
                 .portal_TitleOutline {
@@ -50,7 +49,6 @@
 }
 
 #photoSelector {
-    
     background-image: url(../../assets/images/photo.jpg);
 }
 
@@ -61,7 +59,7 @@
 .portal_Title {
     color: white;
     font-family: Degular, Arial, sans-serif !important;
-    font-size: 80px !important;
+    font-size: 80px;
     font-weight: bold;
     text-transform: uppercase;
     border-bottom: 0px solid transparent ;
@@ -121,13 +119,15 @@
 
 @media only screen and (min-width: $computer) {
     .portfolioPortal {
-        grid-template-columns: 50% 50% !important;
-        grid-template-rows: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
     }
     .portal_Link {
-        
+        width: 50vw;
+        height: 100vh !important;
         &:hover{
             .portal_Title {
                 .portal_TitleOutline {
@@ -137,7 +137,7 @@
         }
     }
     .portal_Title {
-        font-size: 120px !important;
+        font-size: 120px;
         .portal_TitleOutline {
             -moz-text-stroke-width: 3px;  
             -webkit-text-stroke-width: 3px;
@@ -172,7 +172,7 @@
 
 @media only screen and (min-width: 1000px) {
     .portal_Title {
-        font-size: 152px !important;
+        font-size: 140px;
     }
     .photoHover{
         

@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 
 import "../lightbox/lightbox.scss";
 import { useHistory } from 'react-router-dom';
-import {useParams, useLocation } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {gql, useQuery } from '@apollo/client';
-import nextBtn from '../../assets/SVG/next_Btn.svg';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const pageVariants = {
     in: {
@@ -49,6 +51,7 @@ query GetProject($projectID: ID!) {
 
 `;
 
+
 function Lightbox(props) {
 
     const {type, projectId} = useParams();
@@ -76,7 +79,7 @@ function Lightbox(props) {
            setProjectContent(tmpData.Content[0])
            document.title = "VAS Pictures - " + projectData.Title;
         } else{
-            console.log('Fetching project')
+        
         }
     }, [projectData, data, error, loading, projectContent])
 
@@ -132,47 +135,42 @@ function Lightbox(props) {
 
 export default Lightbox;
 
+
 function ModalCarousel (props) {
-
-    const query =  useCheckQuery();
-    let currentSlide = query.get("index");
+    const slickSettings = {
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+        lazyLoad: 'ondemand',
+        draggable: true,
+        resposive: [850],
+        swipeToSlide: true,
+        variableWidth: false,
+        accessibility: true,
+        afterChange: function(index){
+            setCurrentSlide(index)
+        }
+    }
+    
+    const [currentSlide, setCurrentSlide] = useState(0)
     let totalSlides = props.images.length;
-    let history = useHistory();
-    const location = useLocation();
-
-    function goToNextSlide(current) {
-        let nextPage = parseInt(current) +1
-        history.push(location.pathname + '?index=' + nextPage)
-    }
-
-    function goToPreviousSlide(current) {
-        let nextPage = parseInt(current) - 1
-        history.push(location.pathname + '?index=' + nextPage)
-    }
 
     return (
         <>
             <section className="modal_imageCarousel">
-                <div className="modal_imageContainer modal_responsiveFrame">
-                    <motion.img 
-                    src={props.images[query.get("index")].url} 
-                    alt=""
-                    />   
-                </div>
-                <div className="modal_carouselControls">
-                    <button onClick={() => goToPreviousSlide(currentSlide)} disabled={currentSlide <= 0} className="carouselControl_buttons">
-                        <img
-                        src={nextBtn} 
-                        alt="Previous Image"
-                        ></img>
-                    </button>
-                    <button onClick={() => goToNextSlide(currentSlide)} disabled={currentSlide >= (totalSlides-1)} className="carouselControl_buttons">
-                        <img
-                            src={nextBtn}
-                            alt="Next Image"
-                        ></img>
-                    </button>  
-                </div>
+               
+                <Slider {...slickSettings}>
+                    {props.images.map(img => {
+                        return(
+                            <img src={img.url} 
+                                key={img.url}
+                                alt=''/>
+                        )
+                    })
+                    }
+                </Slider>
             </section>
            
             <section className="modal_imageCounter">
@@ -235,8 +233,4 @@ function editLinkToEmbedLink (link, provider) {
         default:
             return link;
     }
-}
-
-function useCheckQuery() {
-    return new URLSearchParams(useLocation().search);
 }

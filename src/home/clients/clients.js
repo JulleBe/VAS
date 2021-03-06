@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-scroll';
+import {HashLink} from 'react-router-hash-link'
+
 import './clients.scss';
 import Title from '../../components/sectionTitle';
 import {gql, useQuery} from '@apollo/client'
@@ -44,7 +45,7 @@ function Clients() {
           </div>
           <div className="clientsCTA">
               <p>Want to join this awesome list? </p>
-              <Link to="home_contact" smooth="true"><p>Contact me!</p></Link>
+              <HashLink to="#contact" smooth="true" className="home_pageLink"><p>Contact me!</p></HashLink>
           </div>
       </div>
       

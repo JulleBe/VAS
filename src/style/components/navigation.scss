@@ -31,7 +31,7 @@
     
     #nav_links {
         position: relative;
-        width: auto;
+        width: 100%;
         height: auto;
         top: auto;
         right: auto;
@@ -40,7 +40,7 @@
         display: flex;
         justify-content: flex-end;
         background-color: transparent;
-        transition: 0s;
+        transition: none;
         #nav_closeBtn {
             display: none;
         }
@@ -106,10 +106,39 @@
                 }
             }  
         }
+        #nav_portfolioCategories {
+            background-color: transparent;
+            border-bottom: 3px solid white;
+            a {
+                color: white !important;
+            }
+        }
     }
     .nav_scrollingDown {
         position: fixed;
         top: -70px;
+    }
+    #nav_portfolioLink {
+        position: relative;
+    }
+    #nav_portfolioCategories {
+        background-color: white;
+        position: absolute;
+        bottom: -100px;
+        z-index: 999;
+        left: 20px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-bottom: 3px solid $orange;
+
+        a {
+            transition: 0.3s ease;
+            -webkit-transition: 0.3s ease;
+            &:hover {
+                color: $orange !important;
+            }
+        }
     }
 }
 

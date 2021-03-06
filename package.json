@@ -27,7 +27,10 @@
     "react-router-hash-link": "^2.4.0",
     "react-scripts": "4.0.3",
     "react-scroll": "^1.8.1",
+    "react-slick": "^0.28.0",
     "reaptcha": "^1.7.2",
+    "simplelightbox": "^2.7.0",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
   },

@@ -1,16 +1,20 @@
 
 import React, { useEffect } from 'react';
 import PortfolioPortal from './portal/portal';
+import { motion} from 'framer-motion';
 
 
-function Portfolio() {
+function Portfolio(props) {
+ 
       useEffect(()=> {
         document.title = "VAS Pictures - Portfolio"
       })
+
       return (
-        <div className="Portfolio">
+        <motion.div 
+        className="Portfolio">
           <PortfolioPortal />
-        </div>
+        </motion.div>
       
     );
   

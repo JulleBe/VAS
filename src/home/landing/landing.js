@@ -5,6 +5,13 @@ import backdrop from '../../assets/video/backdrop.mp4';
 import whiteLogo from '../../assets/logo/VAS-ICON_WHITE.svg';
 
 function Landing() {
+    setTimeout(document.body.style.setProperty('--scroll',   (window.pageYOffset / window.innerHeight)));
+    
+    window.addEventListener('scroll', () => {
+        setTimeout(document.body.style.setProperty('--scroll',   (window.pageYOffset / window.innerHeight)));
+      }, false);
+
+      
     return (
       <section id="home_landing" className="home_section">  
         <div className="backgroundVideo">
@@ -13,9 +20,12 @@ function Landing() {
             </video>
         </div>
         <div className="landingContent">
-            <div className="landing_centerLogo" >
+            <div className="landing_centerLogo"
+            data-aos="zoom-in"
+            data-aos-once="zoom-in" >
              <img src={whiteLogo} alt="VAS logo in White" 
-                className="animate__zoomOut"/>
+                className="animate__backOutUp"
+                />
             </div>
             <div className="nextSectionBtn">
                 <Link to="home_about" smooth="true"> 
