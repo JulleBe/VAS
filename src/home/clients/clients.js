@@ -29,7 +29,7 @@ function Clients() {
 
   return (
     <section id="home_clients" className="home_section">  
-      <Title text="Clients"></Title>
+      <Title text="Clients" showOutline={true}></Title>
       <div className="clientsContent">
           <div className="clientsContainer">
             {!loading && clientsList.length !== 0
@@ -45,7 +45,7 @@ function Clients() {
           </div>
           <div className="clientsCTA">
               <p>Want to join this awesome list? </p>
-              <HashLink to="#contact" smooth="true" className="home_pageLink"><p>Contact me!</p></HashLink>
+              <HashLink to="#contact" smooth="true" className="home_pageLink" ><p>Contact me!</p></HashLink>
           </div>
       </div>
       

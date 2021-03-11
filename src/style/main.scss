@@ -14,6 +14,7 @@ body {
 .home_section {
   min-height: 100vh;
   padding-bottom: 50px;
+  padding-top: 50px;
   width: 100vw;
   border-bottom: 10px solid $orange;
   .sectionContainer{
@@ -83,6 +84,7 @@ a {
     display: flex;
     width: auto;
     border-bottom: 2px dotted $orange;
+    transition: 0.3s ease;
   }
   &:hover {
     p {

@@ -12,13 +12,18 @@
     width: inherit;
     position: relative;
     overflow: hidden;
+    height: 160px !important;
+    width: auto;
+    
     img {
         height: 100%;
+        width: 100%;
         position: absolute;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
         z-index: -1;
+        object-fit: cover;
     }
     .thumbnail_projectInfoHover {
         background-color: rgba($color: $orange, $alpha: 0.7);
@@ -54,21 +59,25 @@
            font-size: 24px ;
         }
     }
-    &:hover,
-    &:focus{
-        .thumbnail_projectInfoHover {
-            opacity: 1;
-            .thumbnail_projectInfoText {
-                transform: scale(1);
-            }
-        }
-    }
+   
     span {
         display: flex !important;
         height: 0;
     }
 }
 @media only screen and (min-width: $computer) {
+    .thumbnail_container {
+        height: 310px !important;
+        &:hover,
+         &:focus{
+            .thumbnail_projectInfoHover {
+                opacity: 1;
+                .thumbnail_projectInfoText {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
     .thumbnail_projectInfoHover {
         background-color: rgba($color: $charcoal, $alpha: 0.8)  !important;
         backdrop-filter: blur(2px);
@@ -93,6 +102,7 @@
             font-size: 30px  !important;
             color: $orange !important;
         }
+        
     }
     
 }
@@ -100,6 +110,34 @@
 .imageLoader {
     height: 100vh;
     display: grid;
-    min-height: 200px;
+    min-height: 150px;
     place-items: center;
+}
+
+.squareThumbnail {
+    flex: 1 1 25% !important;
+    min-width: 150px;
+    @media only screen and(min-width: $computer) {
+        flex: 1 1 25% !important;
+        min-width: 310px;
+    }
+    
+}
+
+.landscapeThumbnail {
+    flex: 1 1 50% !important;
+    min-width: 200px;
+    @media only screen and(min-width: $computer) {
+        flex: 1 1 50% !important;
+        min-width: 310px;
+    }
+}
+
+.portraitThumbnail {
+    flex: 1 1 12.5% !important;
+    min-width: 100px;
+    @media only screen and(min-width: $computer) {
+        flex: 1 1 12.5% !important;
+        min-width: 310px;
+    }
 }

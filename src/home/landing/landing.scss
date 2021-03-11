@@ -5,6 +5,7 @@
 #home_landing {
     position: relative;
     padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 .backgroundVideo {
@@ -68,17 +69,18 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-       
-        
+        &:hover, &:focus {
+            border-bottom: none !important;
+        }
     }
     p {
         transition: 0.2s ease;
         margin: 5px 0px;
         font-size: 14px;
-        border-bottom: none;
+        border-bottom: none !important;
         transition: 0.2s ease;
         &:hover {
-            border-bottom: none;
+            border-bottom: none !important;
         }
     }
     .nextSectionBtnWrapper {

@@ -143,12 +143,13 @@ function ModalCarousel (props) {
         slidesToShow: 1,
         slidesToScroll: 1,
         adaptiveHeight: true,
-        lazyLoad: 'ondemand',
+        lazyLoad: 'progressive',
         draggable: true,
         resposive: [850],
         swipeToSlide: true,
         variableWidth: false,
         accessibility: true,
+        arrows: false,
         afterChange: function(index){
             setCurrentSlide(index)
         }
@@ -156,12 +157,12 @@ function ModalCarousel (props) {
     
     const [currentSlide, setCurrentSlide] = useState(0)
     let totalSlides = props.images.length;
-
+    let sliderRef;
     return (
         <>
             <section className="modal_imageCarousel">
                
-                <Slider {...slickSettings}>
+                <Slider {...slickSettings} ref={slider => (sliderRef = slider)}>
                     {props.images.map(img => {
                         return(
                             <img src={img.url} 
@@ -171,11 +172,24 @@ function ModalCarousel (props) {
                     })
                     }
                 </Slider>
+                </section>
+            <section className="modal_carouselControls">
+                <button className="carouselControl_buttons" onClick={e => sliderRef.slickPrev()} disabled={currentSlide === 0 }>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16.43" height="30" viewBox="0 0 16.43 30">
+                <path id="Icon_material-navigate-next" data-name="Icon material-navigate-next" d="M16.011,9l-3.126,3.525L23.04,24,12.885,35.475,16.011,39l13.3-15Z" transform="translate(-12.885 -9)" fill="#1d2327" opacity="0.7"/>
+                </svg>
+                    </button>
+                <div className="modal_imageCounter">
+                    <p className="modal_imageCounterText">{parseInt(currentSlide) + 1 } / {totalSlides} </p>
+                </div>
+                <button className="carouselControl_buttons" onClick={e => sliderRef.slickNext()} disabled={currentSlide === totalSlides - 1}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16.43" height="30" viewBox="0 0 16.43 30">
+                <path id="Icon_material-navigate-next" data-name="Icon material-navigate-next" d="M16.011,9l-3.126,3.525L23.04,24,12.885,35.475,16.011,39l13.3-15Z" transform="translate(-12.885 -9)" fill="#1d2327" opacity="0.7"/>
+                </svg>
+
+                </button>
             </section>
-           
-            <section className="modal_imageCounter">
-                        <p className="modal_imageCounterText">{parseInt(currentSlide) + 1 } / {totalSlides}</p>
-            </section>
+            
         </>
     )
 }
@@ -233,4 +247,9 @@ function editLinkToEmbedLink (link, provider) {
         default:
             return link;
     }
+}
+
+function CustomSlickButton(props){
+    let direction = props.direction; 
+
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, {useEffect, lazy, Suspense, useCallback} from 'react';
+import React, {useEffect, Suspense} from 'react';
 import {useParams} from 'react-router-dom';
 import { gql, useQuery} from '@apollo/client'
 import './gallery.scss';
@@ -26,8 +26,7 @@ const PORTFOLIO_QUERY = gql`
 
 
 
-function  PortfolioGallery() {
-    const Gallery = lazy( () => import('react-photo-gallery'))
+ function  PortfolioGallery() {
     
     const {type, projectId} = useParams();
     let photos = []
@@ -41,29 +40,23 @@ function  PortfolioGallery() {
     useEffect(() => {
         document.title = "VAS Pictures - " + capitalizeWord(type); 
     }, [loading, data, error, type])
-    const renderThumbnail = useCallback(
-        ({key, index, photo}) => {
-            return (
-            <ProjectThumbnail 
-                key={key}
-                photo={photo}
-                index={index}
-            />)
-            })
+
     if(loading === false && error === undefined) {
        
         if(projectId === undefined) {
             photos = mapDataToPhotos(data.portfolios)
+            console.log(photos)
             return (
                 <div id="galleryContainer">
                     <Suspense fallback={<Loader/>}>
-                        <Gallery 
-                                margin={0}
-                                photos={photos}
-                                renderImage={renderThumbnail}
-                                direction="row"
-                                >
-                        </Gallery>
+                        {photos.map( (photo, index) =>  {
+                            console.log(photo)
+                            return <ProjectThumbnail 
+                                key={photo.name + '-' + index}
+                                photo={photo}
+                                index={index}
+                                />
+                        })}
                     </Suspense>
                         
                     
@@ -103,8 +96,7 @@ function mapDataToPhotos(data){
         client: photo.Client,
         src:  photo.Thumbnail.url,
         type: photo.ProjectType,
-        width: deterMineRatio(photo.ThumbnailAspectRatio, 'width'),
-        height: deterMineRatio(photo.ThumbnailAspectRatio, 'height'),
+        aspectRatio: photo.ThumbnailAspectRatio
     }))
 }
 

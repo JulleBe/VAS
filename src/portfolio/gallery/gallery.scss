@@ -4,5 +4,15 @@
     min-height: 100vh;
     padding-top: 60px;
     background-color: $charcoal;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+@media only screen and (min-width: $computer) {
+    #galleryContainer {
+        padding-top: 70px;
+    }
+   
 }
 

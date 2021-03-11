@@ -69,6 +69,8 @@ nav {
     .nav_pagesWrapper {
         width: 70%;
         max-height: 100vh;
+        display: grid;
+        grid-template-rows: auto auto auto;
     }
     #nav_pages {
         li {
@@ -82,11 +84,13 @@ nav {
 
 
 .nav_linksList {
-    display: flex;
+    display: grid;
     flex-direction: column;
-    text-align: left;
+
+    grid-row: 2;
     a {
         text-decoration: none;
+        
         width: 100%;
         &:hover,
         &:focus 
@@ -115,15 +119,15 @@ nav {
       
     }
 }
+
 #nav_social {
+    grid-row: 3;
     margin-top: 100px;
     display: flex;
+    margin-left: 15px;
     ul {
         display: flex;
         align-items: baseline;
-        li{
-            
-        }
     }
     svg {
         margin: 10px;
@@ -142,8 +146,10 @@ nav {
 }
 
 #nav_closeBtn {
+    grid-row: 1;
     display: flex;
     margin-top: 100px;
+    justify-content: flex-end;
     svg {
         path {
             opacity: 0.35;

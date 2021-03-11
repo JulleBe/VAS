@@ -16,14 +16,8 @@ function ProjectThumbnail(props) {
     let client = photo.client;
     let type = photo.type;
     let src = photo.src;
-    let width = photo.width + "px"
-    let height = photo.height;
-   
-    let containerStyle = {
-        width: width,
-        height: height,
-    }
-   
+    let aspectRatio = photo.aspectRatio
+
     function openLightbox(e){
  
         history.push('/portfolio/'+ type +'/' + e.currentTarget.id)
@@ -33,12 +27,11 @@ function ProjectThumbnail(props) {
     
     return (
             <button 
-            className="thumbnail_container" 
+            className={`thumbnail_container ${aspectRatio}Thumbnail`  }
             id={id}
             onClick={openLightbox}
-            style={containerStyle}
             data-aos="fade-up"
-            data-aos-once="false"
+            data-aos-once="true"
             data-aos-delay={100 + (50* index)}
             >   
                 <Suspense 

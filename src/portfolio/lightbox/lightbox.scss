@@ -102,7 +102,6 @@
         display: flex;
         justify-content: center;
         .modal_imageCounterText {
-            margin-top: 20px;
             text-align: center;
             font-family: Degular !important;
             font-size: 25px !important;
@@ -156,21 +155,23 @@
     justify-content: space-between;
     width: 100%;
     margin: auto;
-    position: absolute;
     top: 0px;
     transform: translateY(0%);
     height: calc(100% - 45px);
-    margin: 0px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 100px auto 100px;
+    align-content: center;
     .carouselControl_buttons{
         grid-column: 3;
-        
         cursor: pointer;
-        img{
+        svg{
             width: 50px;
             transition: 0.2s ease;
-            opacity: 0.5;
+            opacity: 0.6;
+            path {
+                transition: 0.2s ease;
+            }
         }
 
         &:first-child {
@@ -182,12 +183,29 @@
         }
         &:hover,
         &:focus {
-            img{
+            svg{
+               
+                path {
+                    fill: $orange;
+                }
                 opacity: 0.9;
                 }
         }
         &:disabled{
-            display: none;
+            svg {
+                opacity: 0.3;
+            }&:hover,
+            &:focus {
+                opacity: 0,3;
+                path {
+                    fill: $charcoal;
+                }
+            }
+        }
+        &:first-child {
+            svg {
+                transform: rotate(180deg);
+            }
         }
     }
     
@@ -197,32 +215,13 @@
         max-width: 98vw !important;
         margin: auto  !important;
         transition: 0.5s ease;
+        position: relative;
         img {
             max-height: 60vh;
             object-fit: contain;
         }
     }
-    .slick-arrow {
-        display: none !important;
-        background-image: linear-gradient(to left,transparent, white) !important;
-        z-index: 999;
-        &::before {
-            font-family: Arial !important;
-            font-weight: bolder;
-            font-size: 30px !important;
-            color: $charcoal !important;
-        }
-        &:hover {
-            &::before {
-                transform: scale(2) !important;
-            } 
-        }
-       
-    }
-    .slick-next {
-        background-image: linear-gradient(to right,transparent, white) !important;
 
-    }
 
 @media only screen and (min-width: $computer) {
 
@@ -281,6 +280,7 @@
     .modal_carouselControls {
         top: 0;
         width: 100%;
+        max-width: $computer;
     }
     .slick-list {
         max-width: $computer !important;
@@ -289,30 +289,5 @@
             max-height: 600px;
         }
     }
-    .slick-arrow {
-        height: 100% !important;
-        width: 150px !important;
-        transition: 0.2s ease;
-        &:before {
-            transition: 0.2s ease;
-            font-family: sans-serif !important;
-            font-size: 30px  !important;
-        }
-        display: block !important;
-    }
-    .slick-next {
-        right: 10px;
-        &:hover {
-            &::before {
-                transform: translateX(30px) !important;
-            }
-        }
-    }
-    .slick-previous {
-        left: 10px;
-    }
-    .slick-disabled {
-        transition: 0.2s ease;
-        display: none  !important;
-    }
+
 }

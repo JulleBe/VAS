@@ -29,7 +29,7 @@ function About() {
                         Meet the
                     </h1>
                     </div>
-                   <Title text="Creative" className="creativeText"></Title>
+                   <Title text="Creative" className="creativeText" showOutline={false}></Title>
 
              
                     <div className="introImageContainer">

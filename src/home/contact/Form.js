@@ -59,8 +59,8 @@ function ContactForm () {
     );
 
     const validationScheme = Yup.object({
-        fullName: Yup.string().min(0, 'Everyone has a name right?').required('You must enter a name'),
-        phoneNb: Yup.string().matches(phoneRegex, "Invalid phone number").required("Number cannot be empty"),
+        fullName: Yup.string().min(0).required('You must enter a name'),
+        phoneNb: Yup.string().matches(phoneRegex, "Invalid phone number"),
         email: Yup.string().required('Email cannot be empty'),
         message: Yup.string().max(500, 'Your message is too long').required('Your message cannot be empty'),
         reCaptcha: Yup.string().required()
@@ -106,7 +106,7 @@ function ContactForm () {
             
                 <Form className="contactForm" onSubmit={props.handleSubmit}>
                     <CustomTextInput 
-                        label="enter your name" 
+                        label="enter your name *" 
                         name="fullName" 
                         type="text"
                         aosdelay="100"
@@ -117,7 +117,7 @@ function ContactForm () {
                         type="tel"
                         aosdelay="200"/>
                     <CustomTextInput 
-                        label="enter your email" 
+                        label="enter your email *" 
                         name="email" 
                         type="email"
                         aosdelay="300"/>
