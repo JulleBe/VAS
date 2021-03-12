@@ -2,16 +2,21 @@
 import React from 'react';
 import {Link as Router} from 'react-router-dom'; 
 import './portal.scss';
+import videoBackdrop from '../../assets/video/PORTFOLIO_VIDEO_START.mp4';
+import photoBackdrop from '../../assets/video/PORTFOLIO_PHOTO_START.mp4';
 
-let photoSelector = document.getElementById('photoSelector');
-let videoSelector =document.getElementById('videoSelector')
 function PortfolioPortal() {
-    
-
-   
+    const mobileWidth = 850;
     function changeGridSize(e){
-      
+        let photoSelector = document.getElementById('photoSelector');
+        let videoSelector = document.getElementById('videoSelector');
+        let videoPlayer = document.getElementById('videoPlayer');
+        let photoPlayer = document.getElementById('photoPlayer');
+
         if(e.target.id === "photoSelector"){
+            photoPlayer.play();
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
             if(window.innerWidth >= 850) {
                 photoSelector.style.width = "60vw";
                 videoSelector.style.width = "40vw";
@@ -23,7 +28,9 @@ function PortfolioPortal() {
            
         }
         else if(e.target.id === "videoSelector") {
-           
+            videoPlayer.play();
+            photoPlayer.pause();
+            photoPlayer.currentTime = 0;
             if(window.innerWidth >= 850) {
                 photoSelector.style.width = "40vw";
                 videoSelector.style.width = "60vw";
@@ -35,7 +42,16 @@ function PortfolioPortal() {
     }
 
     function resetGridSize(){
-       
+        let photoSelector = document.getElementById('photoSelector');
+        let videoSelector = document.getElementById('videoSelector');
+        let videoPlayer = document.getElementById('videoPlayer');
+        let photoPlayer = document.getElementById('photoPlayer');
+
+        videoPlayer.pause();
+        videoPlayer.currentTime = 0;
+
+        photoPlayer.pause();
+        photoPlayer.currentTime = 0;
         if(window.innerWidth >= 850) {
             photoSelector.style.width = "50vw";
             videoSelector.style.width = "50vw";
@@ -64,6 +80,9 @@ function PortfolioPortal() {
                 Photo 
                 <span className="portal_TitleOutline">Photo</span>
                 </h2>
+                <video autoPlay={window.innerWidth <= 850} muted loop={true} id="photoPlayer">
+                    <source src={photoBackdrop} type="video/mp4"></source>
+                </video>
             </Router>
             <Router 
                 id="videoSelector"
@@ -71,11 +90,14 @@ function PortfolioPortal() {
                 className="portal_Link"
                 onMouseEnter={changeGridSize}
                 onMouseLeave={resetGridSize} >
-            <h2 className="portal_Title"
-                id="portfolio_videoText"
-               >
+                <h2 className="portal_Title"
+                    id="portfolio_videoText">
                     Video
-                <span className="portal_TitleOutline">Video</span></h2>
+                    <span className="portal_TitleOutline">Video</span>
+                </h2>
+                <video autoPlay={window.innerWidth <= 850} muted loop={true} id="videoPlayer">
+                    <source src={videoBackdrop} type="video/mp4"></source>
+                </video>
             </Router>
         </div>
     );

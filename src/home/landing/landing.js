@@ -1,7 +1,7 @@
 import React from 'react';  
 import './landing.scss';
 import {Link} from 'react-scroll';
-import backdrop from '../../assets/video/backdrop.mp4';
+import backdrop from '../../assets/video/HEADPAGE_HALF_THE_SIZE.mp4';
 import whiteLogo from '../../assets/logo/VAS-ICON_WHITE.svg';
 
 function Landing() {

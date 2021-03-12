@@ -45,15 +45,13 @@
             transition: 0.2s ease;
         }
     }
-    
-}
-
-#photoSelector {
-    background-image: url(../../assets/images/photo.jpg);
-}
-
-#videoSelector {
-    background-image: url(../../assets/images/video.jpg);
+    position: relative;
+    video {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .portal_Title {

@@ -4,7 +4,6 @@
     .contactContent {
         width: 90%;
         margin: auto;
-        margin-top: 80px;
         max-width: 456.5px;
         margin-bottom: 100px;
         .contactForm {
@@ -29,10 +28,10 @@
     font-size: 14px;
     margin:  20px 00px;
     input {
-        width: 100%;
+        width: calc(100% - 14px);
         border: none;
-        border-bottom: 2px solid $charcoal;
-        padding: 5px 2px;
+        border: 2px solid $charcoal;
+        padding: 5px 5px;
         outline: none;
     }
     label {
@@ -40,6 +39,7 @@
         font-weight: 500;
         position: absolute;
         bottom: 10px;
+        transform: translateY(-180%);
         left: 2px;
         opacity: 0.3;
         transition: 0.2s ease;
@@ -58,29 +58,20 @@
     margin: 0px 0px 20px;
 }
 
-.inputField:focus
-{
-    outline: none;
-    
+.inputField:focus {
     & + .labelName {
-        transform: translateY(-140%);
+        color: $charcoal;
         opacity: 1;
     }
 }
-.inputField:hover + .labelName{
-    color: $charcoal !important;
-    opacity: 1;
-}
 .inputField:invalid {
-    border-bottom: 2px solid red;
+    border: 2px solid red;
     outline: none !important;
     box-shadow: none;
-    & + .labelName {
-        transform: translateY(-140%);
-    }
+
 }
-.inputField:valid{ 
-    &+ .labelName {
+.formIsTouched{ 
+    & + .labelName {
         transform: translateY(-140%);
         color: $charcoal;
     }
@@ -95,7 +86,7 @@ textarea {
 .formErrorMessage {
     position: absolute;
     right: 0px;
-    top: -10px;
+    top: -15px;
     p {
         font-size: 12px !important;
         font-family: Degular, Arial, sans-serif !important;

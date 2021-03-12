@@ -45,12 +45,10 @@ const PORTFOLIO_QUERY = gql`
        
         if(projectId === undefined) {
             photos = mapDataToPhotos(data.portfolios)
-            console.log(photos)
             return (
                 <div id="galleryContainer">
                     <Suspense fallback={<Loader/>}>
                         {photos.map( (photo, index) =>  {
-                            console.log(photo)
                             return <ProjectThumbnail 
                                 key={photo.name + '-' + index}
                                 photo={photo}

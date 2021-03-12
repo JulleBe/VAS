@@ -9,9 +9,11 @@ import Reaptcha from "reaptcha";
 
 const CustomTextInput = ({label, ...props}) => {
     const [field, meta] = useField(props);
-
+    if(meta.touched) {
+        
+    }
     return (
-        <div className="formGroup"  
+        <div className={`formGroup`}
             data-aos="fade-right"
             data-aos-delay={props.aosdelay}
             data-aos-once="true">
