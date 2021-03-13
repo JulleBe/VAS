@@ -105,33 +105,3 @@ function replaceSpaces(string) {
 function removeCaps(string) {
     return string.toLowerCase()
 }
-function deterMineRatio(ratio, axis){
-    switch (ratio) {
-        case 'portrait':
-            if(axis === 'width') {
-                return 9;
-            } else if(axis === 'height') {
-                return 16;
-            }
-            break;
-        case 'square':
-            if(axis === 'width') {
-                return 1;
-            } else if(axis === 'height') {
-                return 1;
-            }
-            break;
-        case 'landscape':
-            if(axis === 'width') {
-                return 16;
-            } else if(axis === 'height') {
-                return 9;
-            }
-            break;
-        default:
-            return 1;
-    }
-}
-/*
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]*/

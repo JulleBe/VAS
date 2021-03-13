@@ -107,7 +107,6 @@
     .aboutCTA_btnsContainer {
         display: flex;
         justify-content: space-between;
-        gap: 20px;
     }
 }
 @media only screen and (min-width: $computer) {
@@ -175,6 +174,16 @@
             text-align: start;
             font-size: 36px !important;
             margin-bottom: 20px;
+        }
+        .aboutCTA_btnsContainer {
+            display: grid;
+            height: 100%;
+            grid-template-columns: auto 40px auto;
+            gap:20px;
+            justify-content: start;
+            .vas_button:last-of-type {
+                grid-column: 3;
+            }
         }
     }
     .aboutContainer {

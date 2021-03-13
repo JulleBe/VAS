@@ -39,7 +39,6 @@ function Clients() {
                   id={client.name}
                   index={index} 
                   key={client.name}/>
-
                 )
             ): <EmptyClients/>}
           </div>

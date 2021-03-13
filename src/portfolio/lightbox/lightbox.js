@@ -248,8 +248,3 @@ function editLinkToEmbedLink (link, provider) {
             return link;
     }
 }
-
-function CustomSlickButton(props){
-    let direction = props.direction; 
-
-}

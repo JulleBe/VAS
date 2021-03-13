@@ -101,10 +101,9 @@ footer {
         .footer_credits{
             justify-content: center;
             display: flex;
-            gap: 4px;
             align-items: center;
             a {
-           
+                margin-left: 4px;
                 margin-bottom: 0px !important;
             }
         }

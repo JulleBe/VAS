@@ -17,7 +17,7 @@ function PortfolioPortal() {
             photoPlayer.play();
             videoPlayer.pause();
             videoPlayer.currentTime = 0;
-            if(window.innerWidth >= 850) {
+            if(window.innerWidth >= mobileWidth) {
                 photoSelector.style.width = "60vw";
                 videoSelector.style.width = "40vw";
         
@@ -31,7 +31,7 @@ function PortfolioPortal() {
             videoPlayer.play();
             photoPlayer.pause();
             photoPlayer.currentTime = 0;
-            if(window.innerWidth >= 850) {
+            if(window.innerWidth >= mobileWidth) {
                 photoSelector.style.width = "40vw";
                 videoSelector.style.width = "60vw";
             }else {
@@ -52,7 +52,7 @@ function PortfolioPortal() {
 
         photoPlayer.pause();
         photoPlayer.currentTime = 0;
-        if(window.innerWidth >= 850) {
+        if(window.innerWidth >= mobileWidth) {
             photoSelector.style.width = "50vw";
             videoSelector.style.width = "50vw";
             photoSelector.style.height = "100vh";
@@ -80,7 +80,7 @@ function PortfolioPortal() {
                 Photo 
                 <span className="portal_TitleOutline">Photo</span>
                 </h2>
-                <video autoPlay={window.innerWidth <= 850} muted loop={true} id="photoPlayer">
+                <video autoPlay={window.innerWidth <= mobileWidth} muted loop={true} id="photoPlayer">
                     <source src={photoBackdrop} type="video/mp4"></source>
                 </video>
             </Router>
@@ -95,7 +95,7 @@ function PortfolioPortal() {
                     Video
                     <span className="portal_TitleOutline">Video</span>
                 </h2>
-                <video autoPlay={window.innerWidth <= 850} muted loop={true} id="videoPlayer">
+                <video autoPlay={window.innerWidth <= mobileWidth} muted loop={true} id="videoPlayer">
                     <source src={videoBackdrop} type="video/mp4"></source>
                 </video>
             </Router>

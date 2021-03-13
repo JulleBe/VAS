@@ -41,6 +41,7 @@
     display: grid;
     grid-template-rows: 65vh 60px;
     place-items: center;
+    overflow: hidden;
     .clientsCTA {
         place-self: center;
        
@@ -66,6 +67,8 @@
         flex-wrap: wrap;
         justify-content: center;
         align-content: flex-start;
+        height: 100%;
+        overflow: hidden;
     }
 }
 
