@@ -1,8 +1,9 @@
 import React from 'react';  
 import './landing.scss';
 import {Link} from 'react-scroll';
-import backdrop from '../../assets/video/HEADPAGE_HALF_THE_SIZE.mp4';
+import backdrop from '../../assets/video/HEADPAGE.mp4';
 import whiteLogo from '../../assets/logo/VAS-ICON_WHITE.svg';
+import landingPoster from '../../assets/stills/Landing_still.jpg'
 
 function Landing() {
     setTimeout(document.body.style.setProperty('--scroll',   (window.pageYOffset / window.innerHeight)));
@@ -15,7 +16,7 @@ function Landing() {
     return (
       <section id="home_landing" className="home_section">  
         <div className="backgroundVideo">
-            <video autoPlay={true} muted loop={true} id="backdropVideo" >
+            <video autoPlay={true} muted loop={true} id="backdropVideo" poster={landingPoster} >
                 <source src={backdrop} type="video/mp4"/>
             </video>
         </div>
