@@ -6,6 +6,8 @@ import videoBackdrop from '../../assets/video/PORTFOLIO_VIDEO_START.mp4';
 import photoBackdrop from '../../assets/video/PORTFOLIO_PHOTO_START.mp4';
 import videoPoster from '../../assets/stills/video_still.jpg';
 import photoPoster from '../../assets/stills/photo_still.jpg';
+
+
 function PortfolioPortal() {
     const mobileWidth = 850;
     function changeGridSize(e){
@@ -81,7 +83,7 @@ function PortfolioPortal() {
                 Photo 
                 <span className="portal_TitleOutline">Photo</span>
                 </h2>
-                <video autoPlay={window.innerWidth <= mobileWidth} muted loop={true} id="photoPlayer" poster={photoPoster}>
+                <video autoPlay={window.innerWidth <= mobileWidth} muted loop playsinline="true" controls="false" id="photoPlayer" poster={photoPoster}>
                     <source src={photoBackdrop} type="video/mp4"></source>
                 </video>
             </Router>
@@ -96,7 +98,7 @@ function PortfolioPortal() {
                     Video
                     <span className="portal_TitleOutline">Video</span>
                 </h2>
-                <video autoPlay={window.innerWidth <= mobileWidth} muted loop={true} id="videoPlayer" poster={videoPoster}>
+                <video autoPlay={window.innerWidth <= mobileWidth} muted loop playsinline="true" controls="false" id="videoPlayer" poster={videoPoster}>
                     <source src={videoBackdrop} type="video/mp4"></source>
                 </video>
             </Router>

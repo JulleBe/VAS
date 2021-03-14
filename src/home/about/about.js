@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import profileImage from '../../assets/images/sven.jpg';
 import Title from '../../components/sectionTitle';
 import Button from '../../components/buttons';
-import {HashLink} from 'react-router-hash-link'
+import {Link} from 'react-scroll';
 
 function About() {
     let history = useHistory();
@@ -60,11 +60,11 @@ function About() {
                     <p>
                     I love to have a laugh on the set and get to know the people I work with, but I know when it’s time to continue the work and be professional.
                     </p>
-                    <HashLink to="/#contact" smooth className="home_pageLink"> 
+                    <Link to="contact" smooth className="home_pageLink"> 
                         <p>
                         Let's get in touch 
                         </p>
-                    </HashLink>
+                    </Link>
                 </div>
 
                 <div className="aboutCTA" 

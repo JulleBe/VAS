@@ -3,7 +3,7 @@
 #home_about {
     display: grid;
     place-items: center;
-    padding-top: 0px;
+    padding-top: 50px;
 }
 .aboutContainer {
     max-width: 480px;
@@ -106,7 +106,13 @@
     }
     .aboutCTA_btnsContainer {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        .vas_button {
+            width: 100%;
+            &:last-of-type {
+                margin-top: 30px;
+            }
+        }
     }
 }
 @media only screen and (min-width: $computer) {
@@ -119,6 +125,7 @@
 
 @media only screen and(min-width: 1250px) {
     #home_about {
+        padding-top: 0px;
         .sectionTitle {
             h1 {
                 font-size: 152px !important;
@@ -176,13 +183,17 @@
             margin-bottom: 20px;
         }
         .aboutCTA_btnsContainer {
+            width: auto;
             display: grid;
             height: 100%;
             grid-template-columns: auto 40px auto;
-            gap:20px;
             justify-content: start;
-            .vas_button:last-of-type {
-                grid-column: 3;
+            .vas_button{
+                width: 170px;
+                &:last-of-type {
+                    margin-top: 0px;
+                    grid-column: 3;
+                }
             }
         }
     }

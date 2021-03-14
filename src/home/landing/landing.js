@@ -16,7 +16,7 @@ function Landing() {
     return (
       <section id="home_landing" className="home_section">  
         <div className="backgroundVideo">
-            <video autoPlay={true} muted loop={true} id="backdropVideo" poster={landingPoster} >
+            <video autoPlay={true} muted={true} loop={true} id="backdropVideo" playsinline={true} controls={false} poster={landingPoster} >
                 <source src={backdrop} type="video/mp4"/>
             </video>
         </div>
