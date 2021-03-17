@@ -98,11 +98,10 @@ function Clients() {
       arrows: false,
       slidesToShow: 4,
       slidesToScroll: 1,
-      vertical:true,
+      vertical: true,
       autoplay: true,
       autoplaySpeed: 2000,
-      pauseOnHover: true,
-    
+      pauseOnHover: false,
     }
       return (
         <><div className="clients_rowOne clients_carouselRow">
@@ -136,13 +135,13 @@ function Clients() {
       dots: false,
       infinite: true,
       arrows: false,
-      slidesToShow: 7,
+      slidesToShow: 8,
       slidesToScroll: 1,
-      vertical:false,
+      vertical: false,
       autoplay: true,
       autoplaySpeed: 2000,
-      pauseOnHover: true,
-    }
+      pauseOnHover: false,
+      }
     return (
       <><div className="clients_rowOne clients_carouselRow">
       <Slider {...webSlickSettings}>

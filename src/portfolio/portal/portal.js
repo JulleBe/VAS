@@ -6,6 +6,7 @@ import videoBackdrop from '../../assets/video/PORTFOLIO_VIDEO_START.mp4';
 import photoBackdrop from '../../assets/video/PORTFOLIO_PHOTO_START.mp4';
 import videoPoster from '../../assets/stills/video_still.jpg';
 import photoPoster from '../../assets/stills/photo_still.jpg';
+import AutoPlayVideo from '../../components/autoplayVideo';
 
 
 function PortfolioPortal() {
@@ -78,14 +79,16 @@ function PortfolioPortal() {
                 onMouseEnter={changeGridSize}
                 onMouseLeave={resetGridSize}
             >
+              
             <h2 className="portal_Title"
              id="portfolio_photoText"> 
                 Photo 
                 <span className="portal_TitleOutline">Photo</span>
                 </h2>
-                <video autoPlay={window.innerWidth <= mobileWidth} muted loop playsinline="true" controls="false" id="photoPlayer" poster={photoPoster}>
-                    <source src={photoBackdrop} type="video/mp4"></source>
-                </video>
+                <AutoPlayVideo 
+                    id="photoPlayer"
+                    mp4={photoBackdrop}
+                    poster={photoPoster}/>
             </Router>
             <Router 
                 id="videoSelector"
@@ -98,9 +101,10 @@ function PortfolioPortal() {
                     Video
                     <span className="portal_TitleOutline">Video</span>
                 </h2>
-                <video autoPlay={window.innerWidth <= mobileWidth} muted loop playsinline="true" controls="false" id="videoPlayer" poster={videoPoster}>
-                    <source src={videoBackdrop} type="video/mp4"></source>
-                </video>
+                <AutoPlayVideo 
+                    id="videoPlayer"
+                    mp4={videoBackdrop}
+                    poster={videoPoster}/>
             </Router>
         </div>
     );

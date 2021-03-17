@@ -22,7 +22,7 @@ body {
     margin: auto;
   }
   @media only screen and (min-width: $computer) {
-    padding-bottom: 0px;
+    padding-bottom: 20px;
   }
 }
 .home_pageLink {
@@ -101,4 +101,9 @@ h3 {
   text-transform: uppercase;
   font-size: 28px !important;
   text-align: center;
+}
+.autoplayContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
